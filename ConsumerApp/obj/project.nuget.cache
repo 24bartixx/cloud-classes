@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "WR5E5x3OORE=",
+  "dgSpecHash": "1QEYYQ84wyY=",
   "success": true,
   "projectFilePath": "S:\\Studia\\6sem\\CHMURA\\Laby\\1\\Cloud1\\ConsumerApp\\ConsumerApp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\jestg\\.nuget\\packages\\rabbitmq.client\\7.2.1\\rabbitmq.client.7.2.1.nupkg.sha512",
+    "C:\\Users\\jestg\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
+    "C:\\Users\\jestg\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

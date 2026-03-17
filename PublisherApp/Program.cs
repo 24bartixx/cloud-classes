@@ -19,5 +19,5 @@ _ = publisher2.RunAsync(CancellationToken.None);
 var publisher3 = new RandomTimePublisher<Type3Event>(5, brokerClient);
 _ = publisher3.RunAsync(CancellationToken.None);
 
-Console.WriteLine("ALe publishers run. Press any key to exit...");
+Console.WriteLine("All publishers run. Press any key to exit...");
 Console.ReadKey();

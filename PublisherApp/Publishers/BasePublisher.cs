@@ -22,7 +22,8 @@ public abstract class BasePublisher<T>(int id, RabbitBrokerClient brokerClient)
             durable: false,
             exclusive: false,
             autoDelete: false,
-            arguments: null, cancellationToken: ct);
+            arguments: null, 
+            cancellationToken: ct);
             
         LoggerHelper.LogCall($"Publisher {Id} initialized for queue {QueueName}");
     }

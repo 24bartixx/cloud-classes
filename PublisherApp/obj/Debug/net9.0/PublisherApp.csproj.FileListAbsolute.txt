@@ -21,3 +21,4 @@ S:\Studia\6sem\CHMURA\Laby\1\Cloud1\PublisherApp\obj\Debug\net9.0\PublisherApp.g
 S:\Studia\6sem\CHMURA\Laby\1\Cloud1\PublisherApp\obj\Debug\net9.0\ref\PublisherApp.dll
 S:\Studia\6sem\CHMURA\Laby\1\Cloud1\PublisherApp\bin\Debug\net9.0\RabbitMQ.Client.dll
 S:\Studia\6sem\CHMURA\Laby\1\Cloud1\PublisherApp\bin\Debug\net9.0\System.Threading.RateLimiting.dll
+S:\Studia\6sem\CHMURA\Laby\1\Cloud1\PublisherApp\obj\Debug\net9.0\PublisherApp.sourcelink.json

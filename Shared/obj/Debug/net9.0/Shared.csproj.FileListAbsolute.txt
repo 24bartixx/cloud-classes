@@ -16,3 +16,4 @@ S:\Studia\6sem\CHMURA\Laby\1\Cloud1\Shared\bin\Debug\net9.0\RabbitMQ.Client.dll
 S:\Studia\6sem\CHMURA\Laby\1\Cloud1\Shared\bin\Debug\net9.0\System.Threading.RateLimiting.dll
 S:\Studia\6sem\CHMURA\Laby\1\Cloud1\Shared\obj\Debug\net9.0\Shared.csproj.AssemblyReference.cache
 S:\Studia\6sem\CHMURA\Laby\1\Cloud1\Shared\obj\Debug\net9.0\Shared.csproj.Up2Date
+S:\Studia\6sem\CHMURA\Laby\1\Cloud1\Shared\obj\Debug\net9.0\Shared.sourcelink.json
