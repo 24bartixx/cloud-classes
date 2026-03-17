@@ -6,7 +6,7 @@ using Shared;
 
 namespace ConsumerApp.Consumers;
 
-public abstract class BaseConsumer<T>(int id, RabbitBrokerClient brokerClient) 
+public abstract class BaseConsumer<T>(int id, RabbitBrokerClient brokerClient): IAsyncDisposable 
     where T : CustomEvent, new()
 {
     protected readonly int Id = id;
@@ -45,4 +45,11 @@ public abstract class BaseConsumer<T>(int id, RabbitBrokerClient brokerClient)
     }
     
     protected abstract Task OnEventReceived(T receivedEvent);
+
+
+    public async ValueTask DisposeAsync()
+    {
+        if (Channel != null) await Channel.DisposeAsync();
+        await brokerClient.DisposeAsync();
+    }
 }

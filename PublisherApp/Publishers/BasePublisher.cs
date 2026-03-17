@@ -5,7 +5,7 @@ using Shared;
 
 namespace PublisherApp.Publishers;
 
-public abstract class BasePublisher<T>(int id, RabbitBrokerClient brokerClient)
+public abstract class BasePublisher<T>(int id, RabbitBrokerClient brokerClient): IPublisher, IAsyncDisposable
     where T : CustomEvent, new()
 {
     protected readonly int Id = id;
@@ -27,8 +27,8 @@ public abstract class BasePublisher<T>(int id, RabbitBrokerClient brokerClient)
             
         LoggerHelper.LogCall($"Publisher {Id} initialized for queue {QueueName}");
     }
-    
-    protected async Task PublishEventAsync()
+
+    public async Task PublishEventAsync()
     {
         if (Channel == null || QueueName == null) return;
 
@@ -41,5 +41,25 @@ public abstract class BasePublisher<T>(int id, RabbitBrokerClient brokerClient)
             body: body);
 
         LoggerHelper.LogCall($"Publisher {Id} sent {typeof(T).Name} to {QueueName}");
+    }
+
+    public async Task PublishEventAsync(CustomEvent customEvent)
+    {
+        if (Channel == null || QueueName == null) return;
+        
+        var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(customEvent));
+
+        await Channel.BasicPublishAsync(
+            exchange: string.Empty, 
+            routingKey: QueueName, 
+            body: body);
+
+        LoggerHelper.LogCall($"Publisher {Id} sent {typeof(T).Name} to {QueueName}");
+    }
+    
+    public async ValueTask DisposeAsync()
+    {
+        if (Channel != null) await Channel.DisposeAsync();
+        await brokerClient.DisposeAsync();
     }
 }
