@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{16F3A345-F5CA-4911-A0B5-155658962027}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{996385BB-6ADF-47AB-8CB7-1E4DFC1F71EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublisherApp", "PublisherApp\PublisherApp.csproj", "{8448A42A-7BA8-4D80-8B4A-04164EC05F5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumerApp", "ConsumerApp\ConsumerApp.csproj", "{CD345F45-7500-4A24-976E-4AE05F8EE6D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{996385BB-6ADF-47AB-8CB7-1E4DFC1F71EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{996385BB-6ADF-47AB-8CB7-1E4DFC1F71EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{996385BB-6ADF-47AB-8CB7-1E4DFC1F71EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{996385BB-6ADF-47AB-8CB7-1E4DFC1F71EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8448A42A-7BA8-4D80-8B4A-04164EC05F5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8448A42A-7BA8-4D80-8B4A-04164EC05F5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8448A42A-7BA8-4D80-8B4A-04164EC05F5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8448A42A-7BA8-4D80-8B4A-04164EC05F5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD345F45-7500-4A24-976E-4AE05F8EE6D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD345F45-7500-4A24-976E-4AE05F8EE6D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD345F45-7500-4A24-976E-4AE05F8EE6D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD345F45-7500-4A24-976E-4AE05F8EE6D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

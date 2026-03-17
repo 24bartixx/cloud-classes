@@ -1,0 +1,25 @@
+﻿services:
+  cloud1:
+    image: cloud1
+    build:
+      context: .
+      dockerfile: Cloud1/Dockerfile
+
+  shared:
+    image: shared
+    build:
+      context: .
+      dockerfile: Shared/Dockerfile
+
+  publisherapp:
+    image: publisherapp
+    build:
+      context: .
+      dockerfile: PublisherApp/Dockerfile
+
+  consumerapp:
+    image: consumerapp
+    build:
+      context: .
+      dockerfile: ConsumerApp/Dockerfile
+

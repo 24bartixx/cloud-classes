@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/Cloud1/Shared/Events.cs">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/Cloud1/Shared/Events.cs" />
+              <option name="originalContent" value="namespace Cloud1.Events;&#10;&#10;public class Event1&#10;{&#10;    public Guid Id { get; set; } = Guid.NewGuid();&#10;    public string Message { get; set; } = &quot;Type 1 Data&quot;;&#10;}&#10;&#10;public class Event2&#10;{&#10;    public Guid Id { get; set; } = Guid.NewGuid();&#10;    public string Message { get; set; } = &quot;Type 2 Data&quot;;&#10;}&#10;&#10;public class Event3&#10;{&#10;    public Guid Id { get; set; } = Guid.NewGuid();&#10;    public string Message { get; set; } = &quot;Type 3 Data&quot;;&#10;}&#10;&#10;public class Event4&#10;{&#10;    public Guid Id { get; set; } = Guid.NewGuid();&#10;    public string Message { get; set; } = &quot;Type 4 Data - Generated from Type 3&quot;;&#10;}&#10;" />
+              <option name="updatedContent" value="namespace Cloud1.Events;&#10;&#10;public class Event1&#10;{&#10;    public Guid Id { get; set; } = Guid.NewGuid();&#10;    public DateTimeOffset Timestamp { get; set; } = DateTimeOffset.UtcNow;&#10;    public string Message { get; set; } = &quot;Type 1 Data&quot;;&#10;}&#10;&#10;public class Event2&#10;{&#10;    public Guid Id { get; set; } = Guid.NewGuid();&#10;    public DateTimeOffset Timestamp { get; set; } = DateTimeOffset.UtcNow;&#10;    public string Message { get; set; } = &quot;Type 2 Data&quot;;&#10;}&#10;&#10;public class Event3&#10;{&#10;    public Guid Id { get; set; } = Guid.NewGuid();&#10;    public DateTimeOffset Timestamp { get; set; } = DateTimeOffset.UtcNow;&#10;    public string Message { get; set; } = &quot;Type 3 Data&quot;;&#10;}&#10;&#10;public class Event4&#10;{&#10;    public Guid Id { get; set; } = Guid.NewGuid();&#10;    public DateTimeOffset Timestamp { get; set; } = DateTimeOffset.UtcNow;&#10;    public string Message { get; set; } = &quot;Type 4 Data - Generated from Type 3&quot;;&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
