@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace Inventories.Infrastructure.Messaging;
+namespace Inventories.Infrastructure.Bus;
 
 public sealed class RabbitMqConsumer : IMessageConsumer
 {

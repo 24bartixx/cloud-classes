@@ -1,9 +1,9 @@
-using PlayerMatchesHistory.Infrastructure.Configuration;
-using PlayerMatchesHistory.Infrastructure.Logging;
+using Rewards.Infrastructure.Configuration;
+using Rewards.Infrastructure.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace PlayerMatchesHistory.Infrastructure.Messaging;
+namespace Rewards.Infrastructure.Bus;
 
 public static class MessagingExtensions
 {
@@ -18,6 +18,7 @@ public static class MessagingExtensions
         services.AddSingleton<ILoggerFactory>(loggerFactory);
         services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
 
+        services.AddSingleton<IMessagePublisher, RabbitMqPublisher>();
         services.AddSingleton<IMessageConsumer, RabbitMqConsumer>();
 
         return services;

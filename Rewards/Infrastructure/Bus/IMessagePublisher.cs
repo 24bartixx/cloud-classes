@@ -1,4 +1,4 @@
-namespace Clans.Infrastructure.Messaging;
+namespace Rewards.Infrastructure.Bus;
 
 public interface IMessagePublisher : IDisposable
 {

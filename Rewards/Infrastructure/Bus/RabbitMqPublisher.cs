@@ -4,7 +4,7 @@ using Rewards.Infrastructure.Configuration;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 
-namespace Rewards.Infrastructure.Messaging;
+namespace Rewards.Infrastructure.Bus;
 
 public sealed class RabbitMqPublisher : IMessagePublisher
 {

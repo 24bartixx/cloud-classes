@@ -1,10 +1,10 @@
 using System.Text;
 using System.Text.Json;
-using Clans.Infrastructure.Configuration;
+using Inventories.Infrastructure.Configuration;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 
-namespace Clans.Infrastructure.Messaging;
+namespace Inventories.Infrastructure.Bus;
 
 public sealed class RabbitMqPublisher : IMessagePublisher
 {

@@ -1,6 +1,6 @@
 using RabbitMQ.Client;
 using Clans.Infrastructure.Configuration;
-using Clans.Infrastructure.Messaging;
+using Clans.Infrastructure.Bus;
 using Shared.Events;
 
 namespace Clans.Service.Workers;

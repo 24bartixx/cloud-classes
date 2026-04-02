@@ -1,11 +1,11 @@
 using System.Text;
 using System.Text.Json;
-using Rewards.Infrastructure.Configuration;
+using Clans.Infrastructure.Configuration;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace Rewards.Infrastructure.Messaging;
+namespace Clans.Infrastructure.Bus;
 
 public sealed class RabbitMqConsumer : IMessageConsumer
 {

@@ -1,4 +1,4 @@
-namespace Inventories.Infrastructure.Messaging;
+namespace PlayerMatchesHistory.Infrastructure.Bus;
 
 public interface IMessageConsumer : IDisposable
 {

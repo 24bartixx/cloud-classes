@@ -4,7 +4,7 @@ using ClanGames.Infrastructure.Configuration;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 
-namespace ClanGames.Infrastructure.Messaging;
+namespace ClanGames.Infrastructure.Bus;
 
 public sealed class RabbitMqPublisher : IMessagePublisher
 {

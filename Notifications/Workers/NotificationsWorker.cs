@@ -1,5 +1,5 @@
 using Notifications.Infrastructure.Configuration;
-using Notifications.Infrastructure.Messaging;
+using Notifications.Infrastructure.Bus;
 using Shared.Events;
 
 namespace Notifications.Service.Workers;

@@ -1,6 +1,6 @@
 using RabbitMQ.Client;
 using Rewards.Infrastructure.Configuration;
-using Rewards.Infrastructure.Messaging;
+using Rewards.Infrastructure.Bus;
 using Shared.Events;
 
 namespace Rewards.Service.Workers;

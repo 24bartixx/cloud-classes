@@ -1,4 +1,4 @@
-using ClanGames.Infrastructure.Messaging;
+using ClanGames.Infrastructure.Bus;
 
 var builder = WebApplication.CreateBuilder(args);
 

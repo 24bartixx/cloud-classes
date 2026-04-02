@@ -1,6 +1,6 @@
 using RabbitMQ.Client;
 using PlayerMatchesHistory.Infrastructure.Configuration;
-using PlayerMatchesHistory.Infrastructure.Messaging;
+using PlayerMatchesHistory.Infrastructure.Bus;
 using Shared.Events;
 
 namespace PlayerMatchesHistory.Service.Workers;

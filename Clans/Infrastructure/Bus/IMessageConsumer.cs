@@ -1,4 +1,4 @@
-namespace PlayerMatchesHistory.Infrastructure.Messaging;
+namespace Clans.Infrastructure.Bus;
 
 public interface IMessageConsumer : IDisposable
 {

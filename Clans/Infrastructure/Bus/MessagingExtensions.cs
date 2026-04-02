@@ -1,9 +1,9 @@
-using Rewards.Infrastructure.Configuration;
-using Rewards.Infrastructure.Logging;
+using Clans.Infrastructure.Configuration;
+using Clans.Infrastructure.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Rewards.Infrastructure.Messaging;
+namespace Clans.Infrastructure.Bus;
 
 public static class MessagingExtensions
 {

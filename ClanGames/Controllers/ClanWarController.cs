@@ -1,5 +1,5 @@
 using ClanGames.Infrastructure.Configuration;
-using ClanGames.Infrastructure.Messaging;
+using ClanGames.Infrastructure.Bus;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Events;
 

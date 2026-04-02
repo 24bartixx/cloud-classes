@@ -1,4 +1,4 @@
-namespace Notifications.Infrastructure.Messaging;
+namespace Inventories.Infrastructure.Bus;
 
 public interface IMessageConsumer : IDisposable
 {

@@ -1,4 +1,4 @@
-using Rewards.Infrastructure.Messaging;
+using Rewards.Infrastructure.Bus;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 

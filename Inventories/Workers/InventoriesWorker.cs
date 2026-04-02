@@ -1,5 +1,5 @@
 using Inventories.Infrastructure.Configuration;
-using Inventories.Infrastructure.Messaging;
+using Inventories.Infrastructure.Bus;
 using Shared.Events;
 
 namespace Inventories.Service.Workers;

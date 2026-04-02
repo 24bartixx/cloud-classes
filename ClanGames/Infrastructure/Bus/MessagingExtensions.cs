@@ -1,9 +1,9 @@
-using Clans.Infrastructure.Configuration;
-using Clans.Infrastructure.Logging;
+using ClanGames.Infrastructure.Configuration;
+using ClanGames.Infrastructure.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Clans.Infrastructure.Messaging;
+namespace ClanGames.Infrastructure.Bus;
 
 public static class MessagingExtensions
 {
@@ -19,7 +19,6 @@ public static class MessagingExtensions
         services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
 
         services.AddSingleton<IMessagePublisher, RabbitMqPublisher>();
-        services.AddSingleton<IMessageConsumer, RabbitMqConsumer>();
 
         return services;
     }

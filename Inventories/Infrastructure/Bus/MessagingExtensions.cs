@@ -3,7 +3,7 @@ using Inventories.Infrastructure.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Inventories.Infrastructure.Messaging;
+namespace Inventories.Infrastructure.Bus;
 
 public static class MessagingExtensions
 {

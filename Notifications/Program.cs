@@ -1,4 +1,4 @@
-using Notifications.Infrastructure.Messaging;
+using Notifications.Infrastructure.Bus;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 

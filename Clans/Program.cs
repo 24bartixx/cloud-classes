@@ -1,4 +1,4 @@
-using Clans.Infrastructure.Messaging;
+using Clans.Infrastructure.Bus;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 

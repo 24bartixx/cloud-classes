@@ -3,7 +3,7 @@ using Notifications.Infrastructure.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Notifications.Infrastructure.Messaging;
+namespace Notifications.Infrastructure.Bus;
 
 public static class MessagingExtensions
 {

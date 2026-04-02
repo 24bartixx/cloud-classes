@@ -1,11 +1,11 @@
 using System.Text;
 using System.Text.Json;
-using PlayerMatchesHistory.Infrastructure.Configuration;
+using Notifications.Infrastructure.Configuration;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace PlayerMatchesHistory.Infrastructure.Messaging;
+namespace Notifications.Infrastructure.Bus;
 
 public sealed class RabbitMqConsumer : IMessageConsumer
 {

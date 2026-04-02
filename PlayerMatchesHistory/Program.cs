@@ -1,4 +1,4 @@
-using PlayerMatchesHistory.Infrastructure.Messaging;
+using PlayerMatchesHistory.Infrastructure.Bus;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 

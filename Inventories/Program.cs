@@ -1,4 +1,4 @@
-using Inventories.Infrastructure.Messaging;
+using Inventories.Infrastructure.Bus;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
