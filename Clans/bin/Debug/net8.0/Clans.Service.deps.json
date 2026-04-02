@@ -9,6 +9,10 @@
       "Clans.Service/1.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Hosting": "10.0.5",
+          "RabbitMQ.Client": "6.8.1",
+          "Serilog": "3.1.1",
+          "Serilog.Extensions.Hosting": "8.0.0",
+          "Serilog.Sinks.Console": "5.0.1",
           "Shared": "1.0.0"
         },
         "runtime": {

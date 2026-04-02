@@ -1,12 +1,12 @@
+using ClanGames.Infrastructure.Configuration;
+using ClanGames.Infrastructure.Messaging;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Configuration;
 using Shared.Events;
-using Shared.Messaging;
 
 namespace ClanWars.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/clan-wars")]
 public sealed class ClanWarController : ControllerBase
 {
     private readonly IMessagePublisher _publisher;
@@ -41,10 +41,6 @@ public sealed class ClanWarController : ControllerBase
         };
 
         _publisher.PublishToExchange(ExchangeNames.ClanWarEnded, @event);
-
-        _logger.LogInformation(
-            "ClanWarEndedEvent published to exchange '{Exchange}'.",
-            ExchangeNames.ClanWarEnded);
 
         return Accepted(new { @event.ClanWarId, @event.EndedAtUtc });
     }

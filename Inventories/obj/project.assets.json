@@ -2063,6 +2063,10 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.Extensions.Hosting >= 10.0.5",
+      "RabbitMQ.Client >= 6.8.1",
+      "Serilog >= 3.1.1",
+      "Serilog.Extensions.Hosting >= 8.0.0",
+      "Serilog.Sinks.Console >= 5.0.1",
       "Shared >= 1.0.0"
     ]
   },
@@ -2073,11 +2077,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Inventories\\Inventories.Service.csproj",
+      "projectUniqueName": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Inventories\\Inventories.Service.csproj",
       "projectName": "Inventories.Service",
-      "projectPath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Inventories\\Inventories.Service.csproj",
+      "projectPath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Inventories\\Inventories.Service.csproj",
       "packagesPath": "C:\\Users\\jestg\\.nuget\\packages\\",
-      "outputPath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Inventories\\obj\\",
+      "outputPath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Inventories\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\dev\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2096,8 +2100,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj": {
-              "projectPath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj"
+            "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj": {
+              "projectPath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj"
             }
           }
         }
@@ -2121,6 +2125,22 @@
           "Microsoft.Extensions.Hosting": {
             "target": "Package",
             "version": "[10.0.5, )"
+          },
+          "RabbitMQ.Client": {
+            "target": "Package",
+            "version": "[6.8.1, )"
+          },
+          "Serilog": {
+            "target": "Package",
+            "version": "[3.1.1, )"
+          },
+          "Serilog.Extensions.Hosting": {
+            "target": "Package",
+            "version": "[8.0.0, )"
+          },
+          "Serilog.Sinks.Console": {
+            "target": "Package",
+            "version": "[5.0.1, )"
           }
         },
         "imports": [

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jzOBWsGloAs=",
+  "dgSpecHash": "cjeRa92NTg0=",
   "success": true,
-  "projectFilePath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Inventories\\Inventories.Service.csproj",
+  "projectFilePath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Inventories\\Inventories.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jestg\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.5\\microsoft.extensions.configuration.10.0.5.nupkg.sha512",
     "C:\\Users\\jestg\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.5\\microsoft.extensions.configuration.abstractions.10.0.5.nupkg.sha512",

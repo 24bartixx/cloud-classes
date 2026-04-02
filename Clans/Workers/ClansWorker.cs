@@ -1,7 +1,7 @@
 using RabbitMQ.Client;
-using Shared.Configuration;
+using Clans.Infrastructure.Configuration;
+using Clans.Infrastructure.Messaging;
 using Shared.Events;
-using Shared.Messaging;
 
 namespace Clans.Service.Workers;
 
@@ -45,9 +45,7 @@ public sealed class ClansWorker : BackgroundService
 
         foreach (var clan in @event.ClanResults)
         {
-            _logger.LogInformation(
-                "Clan '{ClanName}' (Id={ClanId}) — IsWinner={IsWinner}, NewRating={NewRating} (Δ{Delta}).",
-                clan.ClanName, clan.ClanId, clan.IsWinner, clan.NewRating, clan.RatingDelta);
+            // Internal processing logic here
         }
 
         await Task.CompletedTask;

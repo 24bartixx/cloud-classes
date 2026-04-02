@@ -1,4 +1,4 @@
-using Shared.Messaging;
+using ClanGames.Infrastructure.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
 

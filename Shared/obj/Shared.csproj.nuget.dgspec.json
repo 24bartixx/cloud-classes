@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj": {}
+    "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj": {}
   },
   "projects": {
-    "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj": {
+    "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj",
+        "projectUniqueName": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj",
+        "projectPath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj",
         "packagesPath": "C:\\Users\\jestg\\.nuget\\packages\\",
-        "outputPath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\obj\\",
+        "outputPath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\dev\\Microsoft Visual Studio\\Shared\\NuGetPackages"

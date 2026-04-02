@@ -1,7 +1,7 @@
 using RabbitMQ.Client;
-using Shared.Configuration;
+using PlayerMatchesHistory.Infrastructure.Configuration;
+using PlayerMatchesHistory.Infrastructure.Messaging;
 using Shared.Events;
-using Shared.Messaging;
 
 namespace PlayerMatchesHistory.Service.Workers;
 
@@ -45,11 +45,7 @@ public sealed class PlayerMatchesHistoryWorker : BackgroundService
 
         foreach (var player in @event.PlayerStats)
         {
-            _logger.LogInformation(
-                "Player '{Name}' (Id={PlayerId}) — K={Kills} D={Deaths} DMG={Damage} XP={XP} Survived={Survived}.",
-                player.PlayerName, player.PlayerId,
-                player.Kills, player.Deaths, player.DamageDealt,
-                player.ExperienceEarned, player.Survived);
+            // Internal processing logic here
         }
 
         await Task.CompletedTask;

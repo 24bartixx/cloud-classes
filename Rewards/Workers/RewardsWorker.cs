@@ -1,7 +1,7 @@
 using RabbitMQ.Client;
-using Shared.Configuration;
+using Rewards.Infrastructure.Configuration;
+using Rewards.Infrastructure.Messaging;
 using Shared.Events;
-using Shared.Messaging;
 
 namespace Rewards.Service.Workers;
 
@@ -65,10 +65,6 @@ public sealed class RewardsWorker : BackgroundService
             };
 
             _publisher.PublishToQueue(QueueNames.InventoriesRewardSelected, rewardEvent);
-
-            _logger.LogInformation(
-                "RewardSelectedEvent published for Player '{Name}' — Reward: '{RewardName}'.",
-                player.PlayerName, selectedReward.ItemName);
         }
 
         await Task.CompletedTask;

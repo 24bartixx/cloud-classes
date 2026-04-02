@@ -1,4 +1,4 @@
-using Shared.Messaging;
+using PlayerMatchesHistory.Infrastructure.Messaging;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 

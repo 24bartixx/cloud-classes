@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4Qdsu08TXpE=",
+  "dgSpecHash": "2NYDhvyn9eA=",
   "success": true,
-  "projectFilePath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Clans\\Clans.Service.csproj",
+  "projectFilePath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Clans\\Clans.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jestg\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.5\\microsoft.extensions.configuration.10.0.5.nupkg.sha512",
     "C:\\Users\\jestg\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.5\\microsoft.extensions.configuration.abstractions.10.0.5.nupkg.sha512",

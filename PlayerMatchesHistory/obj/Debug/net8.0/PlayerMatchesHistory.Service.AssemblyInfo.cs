@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PlayerMatchesHistory.Service")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1fc96a0d2a2a46c6ff1a52da0d042d0ee803e91")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d746c69497532ee4184dbeb891010c1501fecc4")]
 [assembly: System.Reflection.AssemblyProductAttribute("PlayerMatchesHistory.Service")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PlayerMatchesHistory.Service")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,6 +1,6 @@
-using Shared.Configuration;
+using Inventories.Infrastructure.Configuration;
+using Inventories.Infrastructure.Messaging;
 using Shared.Events;
-using Shared.Messaging;
 
 namespace Inventories.Service.Workers;
 
@@ -50,10 +50,6 @@ public sealed class InventoriesWorker : BackgroundService
         _publisher.PublishToQueue(
             QueueNames.NotificationsInventoryUpdated,
             inventoryUpdatedEvent);
-
-        _logger.LogInformation(
-            "InventoryUpdatedEvent published for Player '{PlayerName}'.",
-            @event.PlayerName);
 
         await Task.CompletedTask;
     }

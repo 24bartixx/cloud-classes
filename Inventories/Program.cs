@@ -1,4 +1,4 @@
-using Shared.Messaging;
+using Inventories.Infrastructure.Messaging;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 

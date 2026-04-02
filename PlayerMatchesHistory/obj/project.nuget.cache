@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8WvBurTmstQ=",
+  "dgSpecHash": "qLXv9SPXHOM=",
   "success": true,
-  "projectFilePath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\PlayerMatchesHistory\\PlayerMatchesHistory.Service.csproj",
+  "projectFilePath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\PlayerMatchesHistory\\PlayerMatchesHistory.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jestg\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.5\\microsoft.extensions.configuration.10.0.5.nupkg.sha512",
     "C:\\Users\\jestg\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.5\\microsoft.extensions.configuration.abstractions.10.0.5.nupkg.sha512",

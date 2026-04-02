@@ -1,6 +1,6 @@
-using Shared.Configuration;
+using Notifications.Infrastructure.Configuration;
+using Notifications.Infrastructure.Messaging;
 using Shared.Events;
-using Shared.Messaging;
 
 namespace Notifications.Service.Workers;
 
@@ -48,11 +48,6 @@ public sealed class NotificationsWorker : BackgroundService
                          $"Check your garage to claim them!",
             ScheduledAtUtc = DateTime.UtcNow
         };
-
-        _logger.LogInformation(
-            "[{Channel}] → '{Title}' sent to '{PlayerName}'. Body: {Body}",
-            notification.Channel, notification.Title,
-            notification.PlayerName, notification.Body);
 
         await Task.CompletedTask;
     }

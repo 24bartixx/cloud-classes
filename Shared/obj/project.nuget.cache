@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "q1ua5+tRU8k=",
+  "dgSpecHash": "y/wIpfFWZhY=",
   "success": true,
-  "projectFilePath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj",
+  "projectFilePath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jestg\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\jestg\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
@@ -30,9 +30,9 @@
       "code": "NU1903",
       "level": "Warning",
       "message": "Package 'System.Text.Json' 8.0.4 has a known high severity vulnerability, https://github.com/advisories/GHSA-8g4q-xg66-9fp4",
-      "projectPath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj",
+      "projectPath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj",
       "warningLevel": 1,
-      "filePath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj",
+      "filePath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj",
       "libraryId": "System.Text.Json",
       "targetGraphs": [
         "net8.0"

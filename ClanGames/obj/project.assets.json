@@ -1253,6 +1253,10 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "RabbitMQ.Client >= 6.8.1",
+      "Serilog >= 3.1.1",
+      "Serilog.Extensions.Hosting >= 8.0.0",
+      "Serilog.Sinks.Console >= 5.0.1",
       "Shared >= 1.0.0",
       "Swashbuckle.AspNetCore >= 10.1.7"
     ]
@@ -1264,11 +1268,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\ClanGames\\ClanGames.Api.csproj",
+      "projectUniqueName": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\ClanGames\\ClanGames.Api.csproj",
       "projectName": "ClanGames.Api",
-      "projectPath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\ClanGames\\ClanGames.Api.csproj",
+      "projectPath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\ClanGames\\ClanGames.Api.csproj",
       "packagesPath": "C:\\Users\\jestg\\.nuget\\packages\\",
-      "outputPath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\ClanGames\\obj\\",
+      "outputPath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\ClanGames\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\dev\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1287,8 +1291,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj": {
-              "projectPath": "S:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj"
+            "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj": {
+              "projectPath": "s:\\Studia\\6sem\\CHMURA\\Laby\\2\\Shared\\Shared.csproj"
             }
           }
         }
@@ -1309,6 +1313,22 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "RabbitMQ.Client": {
+            "target": "Package",
+            "version": "[6.8.1, )"
+          },
+          "Serilog": {
+            "target": "Package",
+            "version": "[3.1.1, )"
+          },
+          "Serilog.Extensions.Hosting": {
+            "target": "Package",
+            "version": "[8.0.0, )"
+          },
+          "Serilog.Sinks.Console": {
+            "target": "Package",
+            "version": "[5.0.1, )"
+          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[10.1.7, )"
