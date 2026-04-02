@@ -1,0 +1,13 @@
+S:\Studia\6sem\CHMURA\Laby\2\TanksGame.Shared\bin\Debug\net8.0\TanksGame.Shared.deps.json
+S:\Studia\6sem\CHMURA\Laby\2\TanksGame.Shared\bin\Debug\net8.0\TanksGame.Shared.dll
+S:\Studia\6sem\CHMURA\Laby\2\TanksGame.Shared\bin\Debug\net8.0\TanksGame.Shared.pdb
+S:\Studia\6sem\CHMURA\Laby\2\TanksGame.Shared\obj\Debug\net8.0\TanksGame.Shared.csproj.AssemblyReference.cache
+S:\Studia\6sem\CHMURA\Laby\2\TanksGame.Shared\obj\Debug\net8.0\TanksGame.Shared.GeneratedMSBuildEditorConfig.editorconfig
+S:\Studia\6sem\CHMURA\Laby\2\TanksGame.Shared\obj\Debug\net8.0\TanksGame.Shared.AssemblyInfoInputs.cache
+S:\Studia\6sem\CHMURA\Laby\2\TanksGame.Shared\obj\Debug\net8.0\TanksGame.Shared.AssemblyInfo.cs
+S:\Studia\6sem\CHMURA\Laby\2\TanksGame.Shared\obj\Debug\net8.0\TanksGame.Shared.csproj.CoreCompileInputs.cache
+S:\Studia\6sem\CHMURA\Laby\2\TanksGame.Shared\obj\Debug\net8.0\TanksGame.Shared.sourcelink.json
+S:\Studia\6sem\CHMURA\Laby\2\TanksGame.Shared\obj\Debug\net8.0\TanksGame.Shared.dll
+S:\Studia\6sem\CHMURA\Laby\2\TanksGame.Shared\obj\Debug\net8.0\refint\TanksGame.Shared.dll
+S:\Studia\6sem\CHMURA\Laby\2\TanksGame.Shared\obj\Debug\net8.0\TanksGame.Shared.pdb
+S:\Studia\6sem\CHMURA\Laby\2\TanksGame.Shared\obj\Debug\net8.0\ref\TanksGame.Shared.dll

@@ -1,0 +1,58 @@
+name: tanks-game
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  clan-games:
+    build:
+      context: .
+      dockerfile: ClanGames/Dockerfile
+    container_name: clan-games
+    ports:
+      - "5000:8080"
+    depends_on:
+      - rabbitmq
+
+  clans-service:
+    build:
+      context: .
+      dockerfile: Clans/Dockerfile
+    container_name: clans
+    depends_on:
+      - rabbitmq
+      
+  inventories-service:
+    build:
+      context: .
+      dockerfile: Inventories/Dockerfile
+    container_name: inventories
+    depends_on:
+      - rabbitmq
+
+  notifications-service:
+    build:
+      context: .
+      dockerfile: Notifications/Dockerfile
+    container_name: notifications
+    depends_on:
+      - rabbitmq
+
+  player-matches-history-service:
+    build:
+      context: .
+      dockerfile: PlayerMatchesHistory/Dockerfile
+    container_name: player-matches-history
+    depends_on:
+      - rabbitmq
+
+  rewards-service:
+    build:
+      context: .
+      dockerfile: Rewards/Dockerfile
+    container_name: rewards
+    depends_on:
+      - rabbitmq
