@@ -1,6 +1,7 @@
-using RabbitMQ.Client;
-using Clans.Infrastructure.Configuration;
 using Clans.Infrastructure.Bus;
+using Clans.Infrastructure.Configuration;
+using Clans.Service.Services;
+using RabbitMQ.Client;
 using Shared.Events;
 
 namespace Clans.Service.Workers;
@@ -8,15 +9,18 @@ namespace Clans.Service.Workers;
 public sealed class ClansWorker : BackgroundService
 {
     private readonly IMessageConsumer _consumer;
+    private readonly IClansService _clansService;
     private readonly ILogger<ClansWorker> _logger;
     private readonly RabbitMqSettings _settings;
 
     public ClansWorker(
         IMessageConsumer consumer,
+        IClansService clansService,
         ILogger<ClansWorker> logger,
         RabbitMqSettings settings)
     {
         _consumer = consumer;
+        _clansService = clansService;
         _logger   = logger;
         _settings = settings;
     }
@@ -39,16 +43,7 @@ public sealed class ClansWorker : BackgroundService
 
     private async Task HandleAsync(ClanWarEndedEvent @event)
     {
-        _logger.LogInformation(
-            "Processing ClanWarEndedEvent for ClanWarId={ClanWarId} with {Count} clan results.",
-            @event.ClanWarId, @event.ClanResults.Count);
-
-        foreach (var clan in @event.ClanResults)
-        {
-            // Internal processing logic here
-        }
-
-        await Task.CompletedTask;
+        await _clansService.ProcessClanWarEndedEventAsync(@event);
     }
 
     private void BindQueueToFanoutExchange(string queue, string exchange)

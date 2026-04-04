@@ -1,5 +1,6 @@
 using Clans.Infrastructure.Bus;
 using Clans.Service.Infrastructure.Persistence;
+using Clans.Service.Services;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,6 +9,7 @@ var host = Host.CreateDefaultBuilder(args)
     {
         services.AddRabbitMqMessaging(serviceName: "Clans.Service");
         services.AddPersistence(ctx.Configuration);
+        services.AddSingleton<IClansService, ClansService>();
         services.AddHostedService<Clans.Service.Workers.ClansWorker>();
     })
     .Build();
