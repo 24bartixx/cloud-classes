@@ -48,7 +48,7 @@ public sealed class RewardsWorker : BackgroundService
 
         foreach (var player in @event.PlayerStats)
         {
-            var selectedReward = new RewardItem
+            var selectedReward = new RewardItemDto
             {
                 ItemId   = Guid.NewGuid(),
                 ItemName = "Standard War Chest",

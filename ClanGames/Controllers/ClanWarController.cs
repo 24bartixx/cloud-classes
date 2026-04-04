@@ -20,7 +20,7 @@ public sealed class ClanWarController : ControllerBase
         _logger    = logger;
     }
 
-    [HttpPost("end-clan-war")]
+    [HttpPost("end")]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult EndClanWar([FromBody] EndClanWarRequest request)
@@ -49,6 +49,6 @@ public sealed class ClanWarController : ControllerBase
 public sealed record EndClanWarRequest
 {
     public Guid ClanWarId { get; init; } = Guid.NewGuid();
-    public List<ClanResult> ClanResults { get; init; } = [];
-    public List<PlayerStats> PlayerStats { get; init; } = [];
+    public List<ClanResultDto> ClanResults { get; init; } = [];
+    public List<PlayerStatsDto> PlayerStats { get; init; } = [];
 }
