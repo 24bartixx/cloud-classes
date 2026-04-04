@@ -21,6 +21,7 @@ BEGIN
 END
 ALTER USER RewardsUser WITH DEFAULT_SCHEMA = RewardsSchema;
 GRANT CONTROL ON SCHEMA::RewardsSchema TO RewardsUser;
+GRANT CREATE TABLE TO RewardsUser;
 
 -- Notifications Service
 IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = 'NotificationsLogin')
@@ -37,6 +38,7 @@ BEGIN
 END
 ALTER USER NotificationsUser WITH DEFAULT_SCHEMA = NotificationsSchema;
 GRANT CONTROL ON SCHEMA::NotificationsSchema TO NotificationsUser;
+GRANT CREATE TABLE TO NotificationsUser;
 
 -- Clans Service
 IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = 'ClansLogin')
@@ -53,4 +55,5 @@ BEGIN
 END
 ALTER USER ClansUser WITH DEFAULT_SCHEMA = ClansSchema;
 GRANT CONTROL ON SCHEMA::ClansSchema TO ClansUser;
+GRANT CREATE TABLE TO ClansUser;
 GO

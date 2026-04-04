@@ -1,9 +1,10 @@
 namespace Clans.Domain.Entities;
 
-public record ClanResult
+public class ClanResult
 {
-    public Guid ClanId { get; init; }
-    public int Score { get; init; }
-    public int Placement { get; init; }
-    public int TotalClans { get; init; }
+    public Guid ClanResultId { get; set; }
+    public Guid ClanId { get; set; }
+    public Guid ClanWarId { get; set; }
+    public int Placement { get; set; }
+    public int Score { get; set; }
 }

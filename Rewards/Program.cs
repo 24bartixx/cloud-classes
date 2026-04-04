@@ -12,4 +12,10 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
+using (var scope = host.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<RewardsDbContext>();
+    context.Database.EnsureCreated();
+}
+
 await host.RunAsync();
