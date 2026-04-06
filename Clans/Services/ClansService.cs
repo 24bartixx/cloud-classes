@@ -1,5 +1,6 @@
 using Clans.Domain.Entities;
 using Clans.Service.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Shared.Events;
@@ -26,6 +27,12 @@ public sealed class ClansService : IClansService
             var context = scope.ServiceProvider.GetRequiredService<ClansDbContext>();
 
             // 1. Save general War Result
+            if (await context.ClanWarResults.AnyAsync(r => r.ClanWarId == @event.ClanWarId, ct))
+            {
+                _logger.LogWarning("ClanWarId={ClanWarId} already exists in database. Skipping.", @event.ClanWarId);
+                return;
+            }
+
             var warResult = new ClanWarResult
             {
                 ClanWarId = @event.ClanWarId,

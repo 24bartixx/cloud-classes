@@ -8,15 +8,21 @@ services:
       - MSSQL_SA_PASSWORD=SuperStrongPassword123!
     ports:
       - "1433:1433"
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P SuperStrongPassword123! -C -Q 'SELECT 1' || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   sql-init:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sql-init
     depends_on:
-      - sqlserver
+      sqlserver:
+        condition: service_healthy
     volumes:
       - ./Database/init.sql:/init.sql
-    command: /bin/bash -c "sleep 15s && /opt/mssql-tools18/bin/sqlcmd -S sqlserver -U sa -P SuperStrongPassword123! -C -i /init.sql"
+    command: /opt/mssql-tools18/bin/sqlcmd -S sqlserver -U sa -P SuperStrongPassword123! -C -i /init.sql
 
   rabbitmq:
     image: rabbitmq:3-management
