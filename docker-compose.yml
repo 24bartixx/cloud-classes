@@ -103,7 +103,7 @@ services:
       - rabbitmq
 
     environment:
-      - MongoDb__ConnectionString=mongodb://playermatches_user:playermatches_pass@playermatches-mongo:27018/playermatches
+      - MongoDb__ConnectionString=mongodb://playermatches_user:playermatches_pass@playermatches-mongo:27017/playermatches
 
   playermatches-mongo:
     image: mongo:latest

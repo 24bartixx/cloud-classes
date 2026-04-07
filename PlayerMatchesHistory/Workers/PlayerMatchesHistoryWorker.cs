@@ -10,15 +10,18 @@ public sealed class PlayerMatchesHistoryWorker : BackgroundService
     private readonly IMessageConsumer _consumer;
     private readonly ILogger<PlayerMatchesHistoryWorker> _logger;
     private readonly RabbitMqSettings _settings;
+    private readonly PlayerMatchesHistory.Service.Services.IPlayerMatchesHistoryService _playerMatchesHistoryService;
 
     public PlayerMatchesHistoryWorker(
         IMessageConsumer consumer,
         ILogger<PlayerMatchesHistoryWorker> logger,
-        RabbitMqSettings settings)
+        RabbitMqSettings settings,
+        PlayerMatchesHistory.Service.Services.IPlayerMatchesHistoryService playerMatchesHistoryService)
     {
         _consumer = consumer;
         _logger   = logger;
         _settings = settings;
+        _playerMatchesHistoryService = playerMatchesHistoryService;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -43,12 +46,7 @@ public sealed class PlayerMatchesHistoryWorker : BackgroundService
             "Storing match history for ClanWarId={ClanWarId} — {Count} player records.",
             @event.ClanWarId, @event.PlayerStats.Count);
 
-        foreach (var player in @event.PlayerStats)
-        {
-            // Internal processing logic here
-        }
-
-        await Task.CompletedTask;
+        await _playerMatchesHistoryService.SavePlayerStatsAsync(@event);
     }
 
     private void BindQueueToFanoutExchange(string queue, string exchange)
