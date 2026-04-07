@@ -33,6 +33,8 @@ public sealed class RabbitMqPublisher : IMessagePublisher
             durable: true,
             autoDelete: false);
 
+        DeclareQueue(QueueNames.FileUploaded);
+
         DeclareQueue(QueueNames.InventoriesRewardSelected);
         DeclareQueue(QueueNames.NotificationsInventoryUpdated);
 

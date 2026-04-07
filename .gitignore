@@ -37,8 +37,8 @@ bld/
 .idea/
 
 # Logs
-*.log
-logs/
+# *.log
+# logs/
 TestResults/
 
 # Docker

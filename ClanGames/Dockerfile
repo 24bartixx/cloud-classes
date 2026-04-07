@@ -3,6 +3,7 @@ WORKDIR /src
 
 COPY ["Shared/Shared.csproj", "Shared/"]
 COPY ["ClanGames/ClanGames.Api.csproj", "ClanGames/"]
+COPY ClanGames/Data/mock_game.log ClanGames/Data/
 RUN dotnet restore "ClanGames/ClanGames.Api.csproj"
 
 COPY . .

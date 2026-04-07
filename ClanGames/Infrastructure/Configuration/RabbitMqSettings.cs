@@ -8,10 +8,12 @@ public class RabbitMqSettings
 public static class ExchangeNames
 {
     public const string ClanWarEnded = "ClanWarEndedEvent";
+    public const string FileUploaded = "FileUploadedEvent";
 }
 
 public static class QueueNames
 {
     public const string InventoriesRewardSelected     = "Inventories.RewardSelectedEvent";
     public const string NotificationsInventoryUpdated = "Notifications.InventoryUpdatedEvent";
+    public const string FileUploaded = "Clans.GameLogsEvent";
 }
