@@ -43,8 +43,21 @@ public sealed class ClansService : IClansService
             context.ClanWarResults.Add(warResult);
 
             // 2. Save individual Clan Results
+            var clanIdsFromEvent = @event.ClanResults.Select(r => r.ClanId).Distinct().ToList();
+            var existingClanIds = await context.Clans
+                .Where(c => clanIdsFromEvent.Contains(c.ClanId))
+                .Select(c => c.ClanId)
+                .ToListAsync(ct);
+
             foreach (var resultDto in @event.ClanResults)
             {
+                if (!existingClanIds.Contains(resultDto.ClanId))
+                {
+                    _logger.LogWarning("ClanId={ClanId} does not exist in database. Skipping result for ClanWarId={ClanWarId}.", 
+                        resultDto.ClanId, @event.ClanWarId);
+                    continue;
+                }
+
                 var clanResult = new ClanResult
                 {
                     ClanResultId = Guid.NewGuid(),

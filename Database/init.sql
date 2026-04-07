@@ -3,6 +3,20 @@ BEGIN
     CREATE DATABASE MicroservicesDb;
 END
 GO
+-- Seed 20 Notifications
+DECLARE @n INT = 1;
+WHILE @n <= 20
+BEGIN
+    INSERT INTO [NotificationsSchema].[Notifications] (NotificationId, PlayerId, Message, SentAt)
+    VALUES (
+        CAST(CAST(@n + 5000 AS BINARY(16)) AS UNIQUEIDENTIFIER),
+        CAST(CAST((@n % 10) + 1 AS BINARY(16)) AS UNIQUEIDENTIFIER),
+        'Test notification message #' + CAST(@n AS NVARCHAR(2)),
+        DATEADD(MINUTE, -@n, GETUTCDATE())
+    );
+    SET @n = @n + 1;
+END
+GO
 USE MicroservicesDb;
 GO
 
@@ -162,5 +176,16 @@ BEGIN
         );
         SET @i = @i + 1;
     END
+END
+GO
+-- Notifications Tables
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[NotificationsSchema].[Notifications]') AND type in (N'U'))
+BEGIN
+    CREATE TABLE [NotificationsSchema].[Notifications] (
+        [NotificationId] UNIQUEIDENTIFIER PRIMARY KEY,
+        [PlayerId] UNIQUEIDENTIFIER NOT NULL,
+        [Message] NVARCHAR(MAX) NOT NULL,
+        [SentAt] DATETIME2 NOT NULL
+    );
 END
 GO

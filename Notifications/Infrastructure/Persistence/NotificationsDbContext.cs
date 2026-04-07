@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Notifications.Domain.Entities;
 
-namespace Notifications.Service.Infrastructure.Persistence;
+namespace Notifications.Infrastructure.Persistence;
 
 public class NotificationsDbContext : DbContext
 {
@@ -8,11 +9,18 @@ public class NotificationsDbContext : DbContext
     {
     }
 
+    public DbSet<Notification> Notifications { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        
-        // This ensures all tables for this service use the dedicated schema
+
         modelBuilder.HasDefaultSchema("NotificationsSchema");
+
+        modelBuilder.Entity<Notification>(entity =>
+        {
+            entity.ToTable("Notifications");
+            entity.HasKey(e => e.NotificationId);
+        });
     }
 }

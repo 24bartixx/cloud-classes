@@ -1,5 +1,6 @@
 using Notifications.Infrastructure.Bus;
-using Notifications.Service.Infrastructure.Persistence;
+using Notifications.Infrastructure.Persistence;
+using Notifications.Service.Services;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,6 +9,7 @@ var host = Host.CreateDefaultBuilder(args)
     {
         services.AddRabbitMqMessaging(serviceName: "Notifications.Service");
         services.AddPersistence(ctx.Configuration);
+        services.AddSingleton<INotificationsService, NotificationsService>();
         services.AddHostedService<Notifications.Service.Workers.NotificationsWorker>();
     })
     .Build();

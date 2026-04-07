@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Notifications.Service.Infrastructure.Persistence;
+namespace Notifications.Infrastructure.Persistence;
 
 public static class PersistenceExtensions
 {
