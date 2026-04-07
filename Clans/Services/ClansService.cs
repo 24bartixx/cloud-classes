@@ -1,8 +1,7 @@
+
 using Clans.Domain.Entities;
 using Clans.Service.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Shared.Events;
 
 namespace Clans.Service.Services;
@@ -74,5 +73,12 @@ public sealed class ClansService : IClansService
         }
 
         _logger.LogInformation("Successfully saved results for ClanWarId={ClanWarId}", @event.ClanWarId);
+    }
+
+    Task IClansService.ProcessFileMessageEventAsync(FileMessageEvent @event, CancellationToken ct)
+    {
+        _logger.LogInformation("Received FileMessageEvent: FileName = {FileName}, Extension = {FileExtension}, ContentLength = {ContentLength}",
+            @event.FileName, @event.FileExtension, @event.Content?.Length ?? 0);
+        return Task.CompletedTask;
     }
 }

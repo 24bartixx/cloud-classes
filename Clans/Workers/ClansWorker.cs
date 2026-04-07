@@ -35,15 +35,29 @@ public sealed class ClansWorker : BackgroundService
             QueueNames.ClansWarEnded,
             ExchangeNames.ClanWarEnded);
 
-        await _consumer.StartConsumingAsync<ClanWarEndedEvent>(
+        _logger.LogInformation("Clans.Service starting — consuming queue '{Queue}' for FileMessageEvent.", QueueNames.FileUploaded);
+
+        var clanWarTask = _consumer.StartConsumingAsync<ClanWarEndedEvent>(
             QueueNames.ClansWarEnded,
             HandleAsync,
             stoppingToken);
+
+        var fileMessageTask = _consumer.StartConsumingAsync<FileMessageEvent>(
+            QueueNames.FileUploaded,
+            HandleFileMessageAsync,
+            stoppingToken);
+
+        await Task.WhenAll(clanWarTask, fileMessageTask);
     }
 
     private async Task HandleAsync(ClanWarEndedEvent @event)
     {
         await _clansService.ProcessClanWarEndedEventAsync(@event);
+    }
+
+    private async Task HandleFileMessageAsync(FileMessageEvent @event)
+    {
+        await _clansService.ProcessFileMessageEventAsync(@event);
     }
 
     private void BindQueueToFanoutExchange(string queue, string exchange)

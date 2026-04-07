@@ -13,4 +13,5 @@ public static class ExchangeNames
 public static class QueueNames
 {
     public const string ClansWarEnded = "Clans.ClanWarEndedEvent";
+    public const string FileUploaded = "Clans.GameLogsEvent";
 }
