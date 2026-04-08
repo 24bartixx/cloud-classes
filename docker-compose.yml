@@ -78,6 +78,7 @@ services:
       - MONGO_INITDB_DATABASE=inventories
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=adminpass
+      - MONGO_LOG_LEVEL=warning
     volumes:
       - ./Inventories/seed/init-inventories.js:/docker-entrypoint-initdb.d/init-inventories.js:ro
 
@@ -114,6 +115,7 @@ services:
       - MONGO_INITDB_DATABASE=playermatches
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=adminpass
+      - MONGO_LOG_LEVEL=warning
     volumes:
       - ./PlayerMatchesHistory/seed/init-playermatches.js:/docker-entrypoint-initdb.d/init-playermatches.js:ro
 
