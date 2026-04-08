@@ -1,0 +1,117 @@
+{
+  "clanWarId": "00000000-0000-0000-0000-000000000001",
+  "metadata": {
+    "mapId": "map_forest_01",
+    "durationSeconds": 1240,
+    "endedAt": "2024-05-20T14:30:00Z"
+  },
+  "clanResults": [
+    {
+      "clanId": "00000000-0000-0000-0000-000000000001",
+      "placement": 1,
+      "score": 1200
+    },
+    {
+      "clanId": "00000000-0000-0000-0000-000000000002",
+      "placement": 2,
+      "score": 1100
+    },
+    {
+      "clanId": "00000000-0000-0000-0000-000000000003",
+      "placement": 3,
+      "score": 1000
+    }
+  ],
+  "playerStats": [
+    {
+      "playerId": "00000000-0000-0000-0000-000000000001",
+      "kills": 12,
+      "deaths": 2,
+      "damageDealt": 3500,
+      "damageReceived": 800,
+      "survived": true,
+      "experienceEarned": 1200
+    },
+    {
+      "playerId": "00000000-0000-0000-0000-000000000002",
+      "kills": 8,
+      "deaths": 4,
+      "damageDealt": 2100,
+      "damageReceived": 1500,
+      "survived": false,
+      "experienceEarned": 850
+    },
+    {
+      "playerId": "00000000-0000-0000-0000-000000000003",
+      "kills": 5,
+      "deaths": 5,
+      "damageDealt": 1800,
+      "damageReceived": 1200,
+      "survived": true,
+      "experienceEarned": 600
+    },
+    {
+      "playerId": "00000000-0000-0000-0000-000000000004",
+      "kills": 3,
+      "deaths": 1,
+      "damageDealt": 900,
+      "damageReceived": 300,
+      "survived": true,
+      "experienceEarned": 450
+    },
+    {
+      "playerId": "00000000-0000-0000-0000-000000000005",
+      "kills": 0,
+      "deaths": 8,
+      "damageDealt": 400,
+      "damageReceived": 2500,
+      "survived": false,
+      "experienceEarned": 150
+    },
+    {
+      "playerId": "00000000-0000-0000-0000-000000000006",
+      "kills": 7,
+      "deaths": 3,
+      "damageDealt": 2400,
+      "damageReceived": 1100,
+      "survived": true,
+      "experienceEarned": 900
+    },
+    {
+      "playerId": "00000000-0000-0000-0000-000000000007",
+      "kills": 4,
+      "deaths": 6,
+      "damageDealt": 1500,
+      "damageReceived": 1800,
+      "survived": false,
+      "experienceEarned": 500
+    },
+    {
+      "playerId": "00000000-0000-0000-0000-000000000008",
+      "kills": 2,
+      "deaths": 2,
+      "damageDealt": 1100,
+      "damageReceived": 900,
+      "survived": true,
+      "experienceEarned": 400
+    },
+    {
+      "playerId": "00000000-0000-0000-0000-000000000009",
+      "kills": 10,
+      "deaths": 4,
+      "damageDealt": 2900,
+      "damageReceived": 1400,
+      "survived": false,
+      "experienceEarned": 1050
+    },
+    {
+      "playerId": "00000000-0000-0000-0000-00000000000A",
+      "kills": 1,
+      "deaths": 5,
+      "damageDealt": 600,
+      "damageReceived": 1200,
+      "survived": false,
+      "experienceEarned": 200
+    }
+  ]
+}

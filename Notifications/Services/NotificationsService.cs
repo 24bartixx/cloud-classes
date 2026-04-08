@@ -21,12 +21,14 @@ public sealed class NotificationsService : INotificationsService
 
     public async Task ProcessInventoryUpdatedEventAsync(InventoryUpdatedEvent @event, CancellationToken ct = default)
     {
-        _logger.LogInformation(
-            "Processing notification for Player '{PlayerName}' (Id={PlayerId}) — {ItemCount} item(s) granted.",
-            @event.PlayerName, @event.PlayerId, @event.GrantedItems.Count);
+        var reward = @event.Reward;
+        string itemsSummary = $"Credits: {reward.Credits}, Experience: {reward.Experience}";
+        if (reward.Tanks.Count > 0)
+            itemsSummary += $", Tanks: {string.Join(", ", reward.Tanks)}";
 
-        var itemsSummary = string.Join(", ",
-            @event.GrantedItems.Select(i => $"{i.ItemName} x{i.Quantity}"));
+        _logger.LogInformation(
+            "Processing notification for Player '{PlayerName}' (Id={PlayerId}) — Rewards: {ItemsSummary}",
+            @event.PlayerName, @event.PlayerId, itemsSummary);
 
         using (var scope = _scopeFactory.CreateScope())
         {

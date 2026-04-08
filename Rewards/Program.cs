@@ -8,6 +8,7 @@ var host = Host.CreateDefaultBuilder(args)
     {
         services.AddRabbitMqMessaging(serviceName: "Rewards.Service");
         services.AddPersistence(ctx.Configuration);
+        services.AddScoped<Rewards.Service.Services.IRewardsService, Rewards.Service.Services.RewardsService>();
         services.AddHostedService<Rewards.Service.Workers.RewardsWorker>();
     })
     .Build();

@@ -37,16 +37,21 @@ public sealed class InventoriesWorker : BackgroundService
 
     private async Task HandleAsync(RewardSelectedEvent @event)
     {
+        var reward = @event.Reward;
+        string rewardSummary = $"Credits: {reward.Credits}, Experience: {reward.Experience}";
+        if (reward.Tanks.Count > 0)
+            rewardSummary += $", Tanks: {string.Join(", ", reward.Tanks)}";
+
         _logger.LogInformation(
-            "Granting reward '{RewardName}' (x{Qty}) to Player '{PlayerName}' (Id={PlayerId}).",
-            @event.Reward.ItemName, @event.Reward.Quantity,
+            "Granting reward [{RewardSummary}] to Player '{PlayerName}' (Id={PlayerId}).",
+            rewardSummary,
             @event.PlayerName, @event.PlayerId);
 
         var inventoryUpdatedEvent = new InventoryUpdatedEvent
         {
             PlayerId     = @event.PlayerId,
             PlayerName   = @event.PlayerName,
-            GrantedItems = [@event.Reward],
+            Reward       = reward,
             UpdatedAtUtc = DateTime.UtcNow
         };
 

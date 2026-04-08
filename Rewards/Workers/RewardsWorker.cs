@@ -11,17 +11,23 @@ public sealed class RewardsWorker : BackgroundService
     private readonly IMessagePublisher _publisher;
     private readonly ILogger<RewardsWorker> _logger;
     private readonly RabbitMqSettings _settings;
+    private readonly Rewards.Service.Infrastructure.Persistence.RewardsDbContext _dbContext;
+    private readonly Rewards.Service.Services.IRewardsService _rewardsService;
 
     public RewardsWorker(
         IMessageConsumer consumer,
         IMessagePublisher publisher,
         ILogger<RewardsWorker> logger,
-        RabbitMqSettings settings)
+        RabbitMqSettings settings,
+        Infrastructure.Persistence.RewardsDbContext dbContext,
+        Rewards.Service.Services.IRewardsService rewardsService)
     {
         _consumer  = consumer;
         _publisher = publisher;
         _logger    = logger;
         _settings  = settings;
+        _dbContext = dbContext;
+        _rewardsService = rewardsService;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -46,15 +52,11 @@ public sealed class RewardsWorker : BackgroundService
             "Selecting rewards for ClanWarId={ClanWarId} — {Count} players.",
             @event.ClanWarId, @event.PlayerStats.Count);
 
+        var rewards = _dbContext.Rewards.ToList();
+
         foreach (var player in @event.PlayerStats)
         {
-            var selectedReward = new RewardItemDto
-            {
-                ItemId   = Guid.NewGuid(),
-                ItemName = "Standard War Chest",
-                ItemType = "Consumable",
-                Quantity = 1
-            };
+            var selectedReward = _rewardsService.SelectRewardForPlayer(player, rewards);
 
             var rewardEvent = new RewardSelectedEvent
             {

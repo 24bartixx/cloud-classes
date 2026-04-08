@@ -1,0 +1,40 @@
+{
+  "clanWarId": "00000000-0000-0000-0000-000000000004",
+  "metadata": {
+    "mapId": "map_mountain_04",
+    "durationSeconds": 1800,
+    "endedAt": "2024-08-10T12:00:00Z"
+  },
+  "clanResults": [
+    {
+      "clanId": "00000000-0000-0000-0000-000000000004",
+      "placement": 1,
+      "score": 1300
+    },
+    {
+      "clanId": "00000000-0000-0000-0000-000000000005",
+      "placement": 2,
+      "score": 1200
+    }
+  ],
+  "playerStats": [
+    {
+      "playerId": "00000000-0000-0000-0000-000000000004",
+      "kills": 7,
+      "deaths": 2,
+      "damageDealt": 2100,
+      "damageReceived": 700,
+      "survived": true,
+      "experienceEarned": 800
+    },
+    {
+      "playerId": "00000000-0000-0000-0000-000000000005",
+      "kills": 5,
+      "deaths": 3,
+      "damageDealt": 1700,
+      "damageReceived": 900,
+      "survived": false,
+      "experienceEarned": 600
+    }
+  ]
+}

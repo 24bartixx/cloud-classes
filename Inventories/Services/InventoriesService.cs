@@ -28,9 +28,9 @@ public sealed class InventoriesService : IInventoriesService
     {
         var filter = Builders<BsonDocument>.Filter.Eq("playerId", @event.PlayerId.ToString());
         var update = Builders<BsonDocument>.Update
-            .Inc("experience", @event.GrantedItems.Sum(i => i.Quantity)) 
-            .Inc("credits", 0) 
-            .AddToSetEach("tanks", @event.GrantedItems.Where(i => i.ItemType == "tank").Select(i => i.ItemName));
+            .Inc("experience", @event.Reward.Experience)
+            .Inc("credits", @event.Reward.Credits)
+            .AddToSetEach("tanks", @event.Reward.Tanks);
 
         var updateDef = new List<UpdateDefinition<BsonDocument>>
         {
