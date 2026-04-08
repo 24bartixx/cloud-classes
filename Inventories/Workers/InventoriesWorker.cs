@@ -9,15 +9,18 @@ public sealed class InventoriesWorker : BackgroundService
     private readonly IMessageConsumer _consumer;
     private readonly IMessagePublisher _publisher;
     private readonly ILogger<InventoriesWorker> _logger;
+    private readonly Inventories.Service.Services.IInventoriesService _inventoriesService;
 
     public InventoriesWorker(
         IMessageConsumer consumer,
         IMessagePublisher publisher,
-        ILogger<InventoriesWorker> logger)
+        ILogger<InventoriesWorker> logger,
+        Inventories.Service.Services.IInventoriesService inventoriesService)
     {
         _consumer  = consumer;
         _publisher = publisher;
         _logger    = logger;
+        _inventoriesService = inventoriesService;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -47,10 +50,10 @@ public sealed class InventoriesWorker : BackgroundService
             UpdatedAtUtc = DateTime.UtcNow
         };
 
+        await _inventoriesService.UpsertInventoryAsync(inventoryUpdatedEvent);
+
         _publisher.PublishToQueue(
             QueueNames.NotificationsInventoryUpdated,
             inventoryUpdatedEvent);
-
-        await Task.CompletedTask;
     }
 }
