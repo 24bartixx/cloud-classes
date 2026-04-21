@@ -1,6 +1,7 @@
 using Clans.Infrastructure.Bus;
 using Clans.Service.Infrastructure.Persistence;
-using Clans.Application;
+using MediatR;
+using Clans.Application.Commands.ProcessClanWarEnded;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,7 +10,8 @@ var host = Host.CreateDefaultBuilder(args)
     {
         services.AddRabbitMqMessaging(serviceName: "Clans.Service");
         services.AddPersistence(ctx.Configuration);
-        services.AddSingleton<IClansService, ClansService>();
+        services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssemblyContaining<ProcessClanWarEndedCommand>());
         services.AddHostedService<Clans.Service.Workers.ClansWorker>();
     })
     .Build();

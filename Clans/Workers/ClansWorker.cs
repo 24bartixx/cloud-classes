@@ -1,6 +1,8 @@
 using Clans.Infrastructure.Bus;
 using Clans.Infrastructure.Configuration;
-using Clans.Application;
+using MediatR;
+using Clans.Application.Commands.ProcessClanWarEnded;
+using Clans.Application.Commands.ProcessFileMessage;
 using RabbitMQ.Client;
 using Shared.Events;
 
@@ -9,18 +11,18 @@ namespace Clans.Service.Workers;
 public sealed class ClansWorker : BackgroundService
 {
     private readonly IMessageConsumer _consumer;
-    private readonly IClansService _clansService;
+    private readonly IMediator _mediator;
     private readonly ILogger<ClansWorker> _logger;
     private readonly RabbitMqSettings _settings;
 
     public ClansWorker(
         IMessageConsumer consumer,
-        IClansService clansService,
+        IMediator mediator,
         ILogger<ClansWorker> logger,
         RabbitMqSettings settings)
     {
         _consumer = consumer;
-        _clansService = clansService;
+        _mediator = mediator;
         _logger   = logger;
         _settings = settings;
     }
@@ -52,12 +54,12 @@ public sealed class ClansWorker : BackgroundService
 
     private async Task HandleAsync(ClanWarEndedEvent @event)
     {
-        await _clansService.ProcessClanWarEndedEventAsync(@event);
+        await _mediator.Send(new ProcessClanWarEndedCommand(@event));
     }
 
     private async Task HandleFileMessageAsync(FileMessageEvent @event)
     {
-        await _clansService.ProcessFileMessageEventAsync(@event);
+        await _mediator.Send(new ProcessFileMessageCommand(@event));
     }
 
     private void BindQueueToFanoutExchange(string queue, string exchange)
