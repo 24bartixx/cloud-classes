@@ -1,5 +1,7 @@
 using Rewards.Infrastructure.Bus;
 using Rewards.Service.Infrastructure.Persistence;
+using MediatR;
+using Rewards.Application.Commands.ProcessClanWarEnded;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,7 +10,8 @@ var host = Host.CreateDefaultBuilder(args)
     {
         services.AddRabbitMqMessaging(serviceName: "Rewards.Service");
         services.AddPersistence(ctx.Configuration);
-        services.AddScoped<Rewards.Application.IRewardsService, Rewards.Application.RewardsService>();
+        services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssemblyContaining<ProcessClanWarEndedCommand>());
         services.AddHostedService<Rewards.Service.Workers.RewardsWorker>();
     })
     .Build();

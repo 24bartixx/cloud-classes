@@ -1,6 +1,8 @@
 using RabbitMQ.Client;
+using MediatR;
 using Rewards.Infrastructure.Configuration;
 using Rewards.Infrastructure.Bus;
+using Rewards.Application.Commands.ProcessClanWarEnded;
 using Shared.Events;
 
 namespace Rewards.Service.Workers;
@@ -8,26 +10,20 @@ namespace Rewards.Service.Workers;
 public sealed class RewardsWorker : BackgroundService
 {
     private readonly IMessageConsumer _consumer;
-    private readonly IMessagePublisher _publisher;
+    private readonly IMediator _mediator;
     private readonly ILogger<RewardsWorker> _logger;
     private readonly RabbitMqSettings _settings;
-    private readonly Rewards.Service.Infrastructure.Persistence.RewardsDbContext _dbContext;
-    private readonly Rewards.Application.IRewardsService _rewardsService;
 
     public RewardsWorker(
         IMessageConsumer consumer,
-        IMessagePublisher publisher,
+        IMediator mediator,
         ILogger<RewardsWorker> logger,
-        RabbitMqSettings settings,
-        Infrastructure.Persistence.RewardsDbContext dbContext,
-        Rewards.Application.IRewardsService rewardsService)
+        RabbitMqSettings settings)
     {
         _consumer  = consumer;
-        _publisher = publisher;
+        _mediator  = mediator;
         _logger    = logger;
         _settings  = settings;
-        _dbContext = dbContext;
-        _rewardsService = rewardsService;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -48,28 +44,7 @@ public sealed class RewardsWorker : BackgroundService
 
     private async Task HandleAsync(ClanWarEndedEvent @event)
     {
-        _logger.LogInformation(
-            "Selecting rewards for ClanWarId={ClanWarId} — {Count} players.",
-            @event.ClanWarId, @event.PlayerStats.Count);
-
-        var rewards = _dbContext.Rewards.ToList();
-
-        foreach (var player in @event.PlayerStats)
-        {
-            var selectedReward = _rewardsService.SelectRewardForPlayer(player, rewards);
-
-            var rewardEvent = new RewardSelectedEvent
-            {
-                ClanWarId  = @event.ClanWarId,
-                PlayerId   = player.PlayerId,
-                PlayerName = player.PlayerName,
-                Reward     = selectedReward
-            };
-
-            _publisher.PublishToQueue(QueueNames.InventoriesRewardSelected, rewardEvent);
-        }
-
-        await Task.CompletedTask;
+        await _mediator.Send(new ProcessClanWarEndedCommand(@event));
     }
 
     private void BindQueueToFanoutExchange(string queue, string exchange)

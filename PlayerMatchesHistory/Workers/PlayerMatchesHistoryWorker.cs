@@ -1,6 +1,8 @@
 using RabbitMQ.Client;
 using PlayerMatchesHistory.Infrastructure.Configuration;
 using PlayerMatchesHistory.Infrastructure.Bus;
+using MediatR;
+using PlayerMatchesHistory.Application.Commands.SaveMatch;
 using Shared.Events;
 
 namespace PlayerMatchesHistory.Service.Workers;
@@ -8,20 +10,20 @@ namespace PlayerMatchesHistory.Service.Workers;
 public sealed class PlayerMatchesHistoryWorker : BackgroundService
 {
     private readonly IMessageConsumer _consumer;
+    private readonly IMediator _mediator;
     private readonly ILogger<PlayerMatchesHistoryWorker> _logger;
     private readonly RabbitMqSettings _settings;
-    private readonly Application.IPlayerMatchesHistoryService _playerMatchesHistoryService;
 
     public PlayerMatchesHistoryWorker(
         IMessageConsumer consumer,
+        IMediator mediator,
         ILogger<PlayerMatchesHistoryWorker> logger,
-        RabbitMqSettings settings,
-        Application.IPlayerMatchesHistoryService playerMatchesHistoryService)
+        RabbitMqSettings settings)
     {
         _consumer = consumer;
+        _mediator = mediator;
         _logger   = logger;
         _settings = settings;
-        _playerMatchesHistoryService = playerMatchesHistoryService;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -42,11 +44,7 @@ public sealed class PlayerMatchesHistoryWorker : BackgroundService
 
     private async Task HandleAsync(ClanWarEndedEvent @event)
     {
-        _logger.LogInformation(
-            "Storing match history for ClanWarId={ClanWarId} — {Count} player records.",
-            @event.ClanWarId, @event.PlayerStats.Count);
-
-        await _playerMatchesHistoryService.SavePlayerStatsAsync(@event);
+        await _mediator.Send(new SaveMatchCommand(@event));
     }
 
     private void BindQueueToFanoutExchange(string queue, string exchange)
