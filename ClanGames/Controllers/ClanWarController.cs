@@ -1,5 +1,6 @@
-using ClanGames.Infrastructure.Configuration;
-using ClanGames.Application;
+using MediatR;
+using ClanGames.Application.Commands.PublishFileMessage;
+using ClanGames.Application.Commands.PublishClanWarEnded;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Events;
 
@@ -9,21 +10,21 @@ namespace ClanWars.Api.Controllers;
 [Route("api/clan-wars")]
 public sealed class ClanWarController : ControllerBase
 {
-    private readonly IClanGamesService _clanGamesService;
+    private readonly IMediator _mediator;
     private readonly ILogger<ClanWarController> _logger;
 
     public ClanWarController(
-        IClanGamesService clanGamesService,
+        IMediator mediator,
         ILogger<ClanWarController> logger)
     {
-        _clanGamesService = clanGamesService;
+        _mediator = mediator;
         _logger    = logger;
     }
 
     [HttpPost("end")]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult EndClanWar([FromBody] EndClanWarRequest request)
+    public async Task<IActionResult> EndClanWar([FromBody] EndClanWarRequest request, CancellationToken cancellationToken)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -50,7 +51,7 @@ public sealed class ClanWarController : ControllerBase
                 FileExtension = fileExt,
                 Content = logBytes
             };
-            _clanGamesService.PublishFileMessageEvent(fileMessage);
+            await _mediator.Send(new PublishFileMessageCommand(fileMessage), cancellationToken);
         }
         else
         {
@@ -65,7 +66,7 @@ public sealed class ClanWarController : ControllerBase
             PlayerStats  = request.PlayerStats
         };
 
-        _clanGamesService.PublishClanWarEndedEvent(@event);
+        await _mediator.Send(new PublishClanWarEndedCommand(@event), cancellationToken);
 
         return Accepted(new { @event.ClanWarId, @event.EndedAtUtc });
     }

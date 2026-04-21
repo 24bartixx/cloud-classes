@@ -1,5 +1,6 @@
-using ClanGames.Application;
 using ClanGames.Infrastructure.Bus;
+using MediatR;
+using ClanGames.Application.Commands.PublishClanWarEnded;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddRabbitMqMessaging(serviceName: "ClanWars.Api");
-builder.Services.AddScoped<IClanGamesService, ClanGamesService>();
+builder.Services.AddMediatR(cfg =>
+	cfg.RegisterServicesFromAssemblyContaining<PublishClanWarEndedCommand>());
 
 var app = builder.Build();
 
