@@ -1,12 +1,12 @@
 using Inventories.Infrastructure.Bus;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+using Inventories.Application.Commands.UpdateInventory;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((ctx, services) =>
     {
         services.AddRabbitMqMessaging(serviceName: "Inventories.Service");
-        services.AddSingleton<Inventories.Application.IInventoriesService, Inventories.Application.InventoriesService>();
+        services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssemblyContaining<UpdateInventoryCommand>());
         services.AddHostedService<Inventories.Service.Workers.InventoriesWorker>();
     })
     .Build();
