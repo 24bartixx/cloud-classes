@@ -1,24 +1,24 @@
 using Notifications.Infrastructure.Configuration;
 using Notifications.Infrastructure.Bus;
-using Notifications.Application;
+using MediatR;
+using Notifications.Application.Commands.SendNotification;
 using Shared.Events;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Notifications.Service.Workers;
 
 public sealed class NotificationsWorker : BackgroundService
 {
     private readonly IMessageConsumer _consumer;
-    private readonly INotificationsService _notificationsService;
+    private readonly IMediator _mediator;
     private readonly ILogger<NotificationsWorker> _logger;
 
     public NotificationsWorker(
         IMessageConsumer consumer,
-        INotificationsService notificationsService,
+        IMediator mediator,
         ILogger<NotificationsWorker> logger)
     {
         _consumer = consumer;
-        _notificationsService = notificationsService;
+        _mediator = mediator;
         _logger = logger;
     }
 
@@ -36,6 +36,6 @@ public sealed class NotificationsWorker : BackgroundService
 
     private async Task HandleAsync(InventoryUpdatedEvent @event)
     {
-        await _notificationsService.ProcessInventoryUpdatedEventAsync(@event);
+        await _mediator.Send(new SendNotificationCommand(@event));
     }
 }
