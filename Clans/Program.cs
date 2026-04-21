@@ -1,6 +1,6 @@
 using Clans.Infrastructure.Bus;
 using Clans.Service.Infrastructure.Persistence;
-using Clans.Service.Services;
+using Clans.Application;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 

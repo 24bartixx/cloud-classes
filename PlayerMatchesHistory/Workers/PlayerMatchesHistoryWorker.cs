@@ -10,13 +10,13 @@ public sealed class PlayerMatchesHistoryWorker : BackgroundService
     private readonly IMessageConsumer _consumer;
     private readonly ILogger<PlayerMatchesHistoryWorker> _logger;
     private readonly RabbitMqSettings _settings;
-    private readonly PlayerMatchesHistory.Service.Services.IPlayerMatchesHistoryService _playerMatchesHistoryService;
+    private readonly Application.IPlayerMatchesHistoryService _playerMatchesHistoryService;
 
     public PlayerMatchesHistoryWorker(
         IMessageConsumer consumer,
         ILogger<PlayerMatchesHistoryWorker> logger,
         RabbitMqSettings settings,
-        PlayerMatchesHistory.Service.Services.IPlayerMatchesHistoryService playerMatchesHistoryService)
+        Application.IPlayerMatchesHistoryService playerMatchesHistoryService)
     {
         _consumer = consumer;
         _logger   = logger;

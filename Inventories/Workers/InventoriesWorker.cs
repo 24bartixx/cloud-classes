@@ -9,13 +9,13 @@ public sealed class InventoriesWorker : BackgroundService
     private readonly IMessageConsumer _consumer;
     private readonly IMessagePublisher _publisher;
     private readonly ILogger<InventoriesWorker> _logger;
-    private readonly Inventories.Service.Services.IInventoriesService _inventoriesService;
+    private readonly Application.IInventoriesService _inventoriesService;
 
     public InventoriesWorker(
         IMessageConsumer consumer,
         IMessagePublisher publisher,
         ILogger<InventoriesWorker> logger,
-        Inventories.Service.Services.IInventoriesService inventoriesService)
+        Inventories.Application.IInventoriesService inventoriesService)
     {
         _consumer  = consumer;
         _publisher = publisher;

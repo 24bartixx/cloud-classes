@@ -1,7 +1,6 @@
 using Shared.Events;
-using System.Collections.Generic;
 
-namespace Rewards.Service.Services;
+namespace Rewards.Application;
 
 public interface IRewardsService
 {

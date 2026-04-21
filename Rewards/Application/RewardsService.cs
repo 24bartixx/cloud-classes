@@ -1,8 +1,6 @@
 using Shared.Events;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace Rewards.Service.Services;
+namespace Rewards.Application;
 
 public class RewardsService : IRewardsService
 {

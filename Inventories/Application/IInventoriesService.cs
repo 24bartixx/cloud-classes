@@ -1,8 +1,6 @@
 using Shared.Events;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Inventories.Service.Services;
+namespace Inventories.Application;
 
 public interface IInventoriesService
 {

@@ -1,6 +1,6 @@
 using Shared.Events;
 
-namespace Clans.Service.Services;
+namespace Clans.Application;
 
 public interface IClansService
 {

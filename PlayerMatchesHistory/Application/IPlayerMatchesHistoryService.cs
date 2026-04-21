@@ -1,6 +1,6 @@
 using Shared.Events;
 
-namespace PlayerMatchesHistory.Service.Services;
+namespace PlayerMatchesHistory.Application;
 
 public interface IPlayerMatchesHistoryService
 {

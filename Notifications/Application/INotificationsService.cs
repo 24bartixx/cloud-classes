@@ -1,6 +1,6 @@
 using Shared.Events;
 
-namespace Notifications.Service.Services;
+namespace Notifications.Application;
 
 public interface INotificationsService
 {

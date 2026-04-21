@@ -1,10 +1,8 @@
 using Notifications.Domain.Entities;
 using Notifications.Infrastructure.Persistence;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Shared.Events;
 
-namespace Notifications.Service.Services;
+namespace Notifications.Application;
 
 public sealed class NotificationsService : INotificationsService
 {
@@ -38,29 +36,12 @@ public sealed class NotificationsService : INotificationsService
             {
                 NotificationId = Guid.NewGuid(),
                 PlayerId = @event.PlayerId,
-                Message = $"You received rewards: {itemsSummary}",
+                Message = $"{itemsSummary} (Player: {@event.PlayerName})",
                 SentAt = DateTime.UtcNow
             };
 
             context.Notifications.Add(notification);
             await context.SaveChangesAsync(ct);
         }
-
-        var notificationEvent = new NotificationRequestEvent
-        {
-            PlayerId = @event.PlayerId,
-            PlayerName = @event.PlayerName,
-            Channel = "in-game",
-            Title = "Clan War Rewards Received!",
-            Body = $"You received the following rewards: {itemsSummary}. Check your garage to claim them!",
-            ScheduledAtUtc = DateTime.UtcNow
-        };
-
-        // Note: We don't have a specific queue for this in the original worker, but we can publish it if needed.
-        // The original logic just created the event object but didn't publish it to a specific queue.
-        // Actually, looking at the logs, it might be published to a Notifications queue.
-        // For now, I'll match the logic but adding the DB save which was the main request.
-        
-        _logger.LogInformation("Successfully saved notification for PlayerId={PlayerId}", @event.PlayerId);
     }
 }

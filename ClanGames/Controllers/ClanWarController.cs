@@ -1,5 +1,5 @@
 using ClanGames.Infrastructure.Configuration;
-using ClanGames.Infrastructure.Bus;
+using ClanGames.Application;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Events;
 
@@ -9,14 +9,14 @@ namespace ClanWars.Api.Controllers;
 [Route("api/clan-wars")]
 public sealed class ClanWarController : ControllerBase
 {
-    private readonly IMessagePublisher _publisher;
+    private readonly IClanGamesService _clanGamesService;
     private readonly ILogger<ClanWarController> _logger;
 
     public ClanWarController(
-        IMessagePublisher publisher,
+        IClanGamesService clanGamesService,
         ILogger<ClanWarController> logger)
     {
-        _publisher = publisher;
+        _clanGamesService = clanGamesService;
         _logger    = logger;
     }
 
@@ -50,8 +50,7 @@ public sealed class ClanWarController : ControllerBase
                 FileExtension = fileExt,
                 Content = logBytes
             };
-            
-            _publisher.PublishToQueue(QueueNames.FileUploaded, fileMessage);
+            _clanGamesService.PublishFileMessageEvent(fileMessage);
         }
         else
         {
@@ -66,7 +65,7 @@ public sealed class ClanWarController : ControllerBase
             PlayerStats  = request.PlayerStats
         };
 
-        _publisher.PublishToExchange(ExchangeNames.ClanWarEnded, @event);
+        _clanGamesService.PublishClanWarEndedEvent(@event);
 
         return Accepted(new { @event.ClanWarId, @event.EndedAtUtc });
     }

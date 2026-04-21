@@ -1,8 +1,6 @@
 using Notifications.Infrastructure.Configuration;
 using Notifications.Infrastructure.Bus;
-using Notifications.Infrastructure.Persistence;
-using Notifications.Domain.Entities;
-using Notifications.Service.Services;
+using Notifications.Application;
 using Shared.Events;
 using Microsoft.Extensions.DependencyInjection;
 

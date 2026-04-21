@@ -1,10 +1,9 @@
-
 using Clans.Domain.Entities;
 using Clans.Service.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Shared.Events;
 
-namespace Clans.Service.Services;
+namespace Clans.Application;
 
 public sealed class ClansService : IClansService
 {
@@ -38,47 +37,28 @@ public sealed class ClansService : IClansService
                 FinishDate = @event.EndedAtUtc,
                 TotalClans = @event.ClanResults.Count
             };
-
             context.ClanWarResults.Add(warResult);
 
-            // 2. Save individual Clan Results
-            var clanIdsFromEvent = @event.ClanResults.Select(r => r.ClanId).Distinct().ToList();
-            var existingClanIds = await context.Clans
-                .Where(c => clanIdsFromEvent.Contains(c.ClanId))
-                .Select(c => c.ClanId)
-                .ToListAsync(ct);
-
-            foreach (var resultDto in @event.ClanResults)
+            foreach (var clanResultDto in @event.ClanResults)
             {
-                if (!existingClanIds.Contains(resultDto.ClanId))
-                {
-                    _logger.LogWarning("ClanId={ClanId} does not exist in database. Skipping result for ClanWarId={ClanWarId}.", 
-                        resultDto.ClanId, @event.ClanWarId);
-                    continue;
-                }
-
                 var clanResult = new ClanResult
                 {
                     ClanResultId = Guid.NewGuid(),
-                    ClanId = resultDto.ClanId,
+                    ClanId = clanResultDto.ClanId,
                     ClanWarId = @event.ClanWarId,
-                    Placement = resultDto.Placement,
-                    Score = resultDto.Score
+                    Placement = clanResultDto.Placement,
+                    Score = clanResultDto.Score
                 };
-
                 context.ClanResults.Add(clanResult);
             }
 
             await context.SaveChangesAsync(ct);
         }
-
-        _logger.LogInformation("Successfully saved results for ClanWarId={ClanWarId}", @event.ClanWarId);
     }
 
-    Task IClansService.ProcessFileMessageEventAsync(FileMessageEvent @event, CancellationToken ct)
+    public async Task ProcessFileMessageEventAsync(FileMessageEvent @event, CancellationToken ct = default)
     {
-        _logger.LogInformation("Received FileMessageEvent: FileName = {FileName}, Extension = {FileExtension}, ContentLength = {ContentLength}",
-            @event.FileName, @event.FileExtension, @event.Content?.Length ?? 0);
-        return Task.CompletedTask;
+        // Implement file message processing logic here
+        _logger.LogInformation("Processing FileMessageEvent for FileName={FileName}", @event.FileName);
     }
 }

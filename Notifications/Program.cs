@@ -1,6 +1,6 @@
 using Notifications.Infrastructure.Bus;
 using Notifications.Infrastructure.Persistence;
-using Notifications.Service.Services;
+using Notifications.Application;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 

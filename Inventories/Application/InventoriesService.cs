@@ -1,13 +1,8 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Configuration;
 using Shared.Events;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Linq;
 
-namespace Inventories.Service.Services;
+namespace Inventories.Application;
 
 public sealed class InventoriesService : IInventoriesService
 {
@@ -38,14 +33,7 @@ public sealed class InventoriesService : IInventoriesService
             Builders<BsonDocument>.Update.Set("playerName", @event.PlayerName)
         };
 
-        var result = await _collection.UpdateOneAsync(
-            filter,
-            Builders<BsonDocument>.Update.Combine(updateDef),
-            new UpdateOptions { IsUpsert = true },
-            ct
-        );
-
-        _logger.LogInformation("Upserted inventory for PlayerId={PlayerId}, Matched={MatchedCount}, Modified={ModifiedCount}",
-            @event.PlayerId, result.MatchedCount, result.ModifiedCount);
+        await _collection.UpdateOneAsync(filter, Builders<BsonDocument>.Update.Combine(updateDef), new UpdateOptions { IsUpsert = true }, ct);
+        _logger.LogInformation("Upserted inventory for PlayerId={PlayerId}", @event.PlayerId);
     }
 }

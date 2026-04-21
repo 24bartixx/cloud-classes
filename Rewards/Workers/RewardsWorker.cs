@@ -12,7 +12,7 @@ public sealed class RewardsWorker : BackgroundService
     private readonly ILogger<RewardsWorker> _logger;
     private readonly RabbitMqSettings _settings;
     private readonly Rewards.Service.Infrastructure.Persistence.RewardsDbContext _dbContext;
-    private readonly Rewards.Service.Services.IRewardsService _rewardsService;
+    private readonly Rewards.Application.IRewardsService _rewardsService;
 
     public RewardsWorker(
         IMessageConsumer consumer,
@@ -20,7 +20,7 @@ public sealed class RewardsWorker : BackgroundService
         ILogger<RewardsWorker> logger,
         RabbitMqSettings settings,
         Infrastructure.Persistence.RewardsDbContext dbContext,
-        Rewards.Service.Services.IRewardsService rewardsService)
+        Rewards.Application.IRewardsService rewardsService)
     {
         _consumer  = consumer;
         _publisher = publisher;

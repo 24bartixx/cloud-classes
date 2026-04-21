@@ -6,8 +6,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Linq;
 
-namespace PlayerMatchesHistory.Service.Services;
+namespace PlayerMatchesHistory.Application;
 
 public sealed class PlayerMatchesHistoryService : IPlayerMatchesHistoryService
 {
@@ -39,14 +40,7 @@ public sealed class PlayerMatchesHistoryService : IPlayerMatchesHistoryService
             { "survived", player.Survived },
             { "experienceEarned", player.ExperienceEarned }
         });
-        if (docs.Any())
-        {
-            await _collection.InsertManyAsync(docs, cancellationToken: ct);
-            _logger.LogInformation("Inserted {Count} player match records for ClanWarId={ClanWarId}", docs.Count(), @event.ClanWarId);
-        }
-        else
-        {
-            _logger.LogWarning("No player stats to insert for ClanWarId={ClanWarId}", @event.ClanWarId);
-        }
+        await _collection.InsertManyAsync(docs, cancellationToken: ct);
+        _logger.LogInformation("Saved {Count} player stats for ClanWar {ClanWarId}", @event.PlayerStats.Count, @event.ClanWarId);
     }
 }
