@@ -1,13 +1,13 @@
+using Amazon.S3;
 using Clans.Infrastructure.Bus;
 using Clans.Service.Infrastructure.Persistence;
-using MediatR;
 using Clans.Application.Commands.ProcessClanWarEnded;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((ctx, services) =>
     {
+        services.AddDefaultAWSOptions(ctx.Configuration.GetAWSOptions());
+        services.AddAWSService<IAmazonS3>();
         services.AddRabbitMqMessaging(serviceName: "Clans.Service");
         services.AddPersistence(ctx.Configuration);
         services.AddMediatR(cfg =>

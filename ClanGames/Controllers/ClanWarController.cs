@@ -34,29 +34,7 @@ public sealed class ClanWarController : ControllerBase
             "Ending Clan War {ClanWarId} with {ClanCount} clans and {PlayerCount} players.",
             request.ClanWarId, request.ClanResults.Count, request.PlayerStats.Count);
 
-        var logFilePath = Path.Combine("Data", "mock_game.log");
-        var resolvedPath = Path.GetFullPath(logFilePath);
-        
-
-        if (System.IO.File.Exists(resolvedPath))
-        {
-            var logBytes = ClanGames.Utils.ByteArrConverter.FileToByteArray(resolvedPath);
-            var fileName = Path.GetFileName(resolvedPath);
-            var fileExt = Path.GetExtension(resolvedPath);
-            _logger.LogInformation("Received file: {FileName}, extension: {FileExt}, size: {Size} bytes", fileName, fileExt, logBytes.Length);
-
-            var fileMessage = new FileMessageEvent
-            {
-                FileName = fileName,
-                FileExtension = fileExt,
-                Content = logBytes
-            };
-            await _mediator.Send(new PublishFileMessageCommand(fileMessage), cancellationToken);
-        }
-        else
-        {
-            _logger.LogWarning("Mock game log file not found at path: {Path}", resolvedPath);
-        }
+        await _mediator.Send(new PublishFileMessageCommand(), cancellationToken);
 
         var @event = new ClanWarEndedEvent
         {

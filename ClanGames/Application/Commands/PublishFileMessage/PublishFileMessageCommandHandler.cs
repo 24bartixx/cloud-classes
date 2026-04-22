@@ -1,6 +1,7 @@
 using ClanGames.Infrastructure.Bus;
 using ClanGames.Infrastructure.Configuration;
 using MediatR;
+using Shared.Events;
 
 namespace ClanGames.Application.Commands.PublishFileMessage;
 
@@ -17,13 +18,37 @@ public sealed class PublishFileMessageCommandHandler : IRequestHandler<PublishFi
         _logger = logger;
     }
 
-    public Task Handle(PublishFileMessageCommand request, CancellationToken cancellationToken)
+    public async Task Handle(PublishFileMessageCommand request, CancellationToken cancellationToken)
     {
-        _logger.LogInformation(
-            "Publishing FileMessageEvent for FileName={FileName}",
-            request.FileMessage.FileName);
+        var logFilePath = Path.Combine("Data", "mock_game.log");
+        var resolvedPath = Path.GetFullPath(logFilePath);
 
-        _publisher.PublishToQueue(QueueNames.FileUploaded, request.FileMessage);
-        return Task.CompletedTask;
+        if (!File.Exists(resolvedPath))
+        {
+            _logger.LogWarning("Mock game log file not found at path: {Path}", resolvedPath);
+            return;
+        }
+
+        var fileInfo = new FileInfo(resolvedPath);
+        var logBytes = ClanGames.Utils.ByteArrConverter.FileToByteArray(resolvedPath);
+        var fileName = fileInfo.Name;
+        var fileExt = fileInfo.Extension;
+        var createdAtUtc = fileInfo.CreationTimeUtc;
+
+        _logger.LogInformation(
+            "Publishing file: {FileName}, extension: {FileExt}, size: {Size} bytes, created at {CreatedAtUtc}",
+            fileName, fileExt, fileInfo.Length, createdAtUtc);
+
+        var fileMessage = new FileMessageEvent
+        {
+            FileName = fileName,
+            FileExtension = fileExt,
+            FileSizeBytes = fileInfo.Length,
+            CreatedAtUtc = createdAtUtc,
+            Content = logBytes
+        };
+
+        _publisher.PublishToQueue(QueueNames.FileUploaded, fileMessage);
+        await Task.CompletedTask;
     }
 }
