@@ -12,6 +12,7 @@ public class ClansDbContext : DbContext
     public DbSet<Clan> Clans { get; set; }
     public DbSet<ClanWarResult> ClanWarResults { get; set; }
     public DbSet<ClanResult> ClanResults { get; set; }
+    public DbSet<FileMetadata> FileMetadata { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -36,6 +37,16 @@ public class ClansDbContext : DbContext
         {
             entity.ToTable("ClansResults");
             entity.HasKey(e => e.ClanResultId);
+        });
+
+        modelBuilder.Entity<FileMetadata>(entity =>
+        {
+            entity.ToTable("FileMetadata");
+            entity.HasKey(e => e.FileMetadataId);
+            entity.Property(e => e.FileName).HasMaxLength(255).IsRequired();
+            entity.Property(e => e.FileExtension).HasMaxLength(32).IsRequired();
+            entity.Property(e => e.S3BucketName).HasMaxLength(128).IsRequired();
+            entity.Property(e => e.S3ObjectKey).HasMaxLength(1024).IsRequired();
         });
     }
 }

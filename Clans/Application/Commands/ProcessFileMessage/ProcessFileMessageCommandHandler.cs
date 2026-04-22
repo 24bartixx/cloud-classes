@@ -1,16 +1,20 @@
 using Amazon.S3;
 using Amazon.S3.Model;
+using Clans.Domain.Entities;
+using Clans.Service.Infrastructure.Persistence;
 using MediatR;
 
 namespace Clans.Application.Commands.ProcessFileMessage;
 
 public sealed class ProcessFileMessageCommandHandler(
     ILogger<ProcessFileMessageCommandHandler> logger,
-    IAmazonS3 s3Client) : IRequestHandler<ProcessFileMessageCommand>
+    IAmazonS3 s3Client,
+    ClansDbContext dbContext) : IRequestHandler<ProcessFileMessageCommand>
 {
     private const string BucketName = "pwr-ist-280462-tanks-517392773395-us-east-1-an";
     private readonly IAmazonS3 _s3Client = s3Client;
     private readonly ILogger<ProcessFileMessageCommandHandler> _logger = logger;
+    private readonly ClansDbContext _dbContext = dbContext;
     
     public async Task Handle(ProcessFileMessageCommand request, CancellationToken cancellationToken)
     {
@@ -36,11 +40,27 @@ public sealed class ProcessFileMessageCommandHandler(
         };
 
         var response = await _s3Client.PutObjectAsync(putObjectRequest, cancellationToken);
+
+        var fileMetadata = new FileMetadata
+        {
+            FileMetadataId = Guid.NewGuid(),
+            FileName = request.EventData.FileName,
+            FileExtension = normalizedExtension,
+            FileSizeBytes = request.EventData.FileSizeBytes,
+            CreatedAtUtc = request.EventData.CreatedAtUtc,
+            S3BucketName = BucketName,
+            S3ObjectKey = objectKey
+        };
+
+        _dbContext.FileMetadata.Add(fileMetadata);
+        await _dbContext.SaveChangesAsync(cancellationToken);
+
         _logger.LogInformation(
-            "Uploaded file to S3. Bucket={BucketName}, Key={ObjectKey}, HttpStatusCode={HttpStatusCode}",
+            "Uploaded file to S3 and saved metadata. Bucket={BucketName}, Key={ObjectKey}, HttpStatusCode={HttpStatusCode}, FileMetadataId={FileMetadataId}",
             BucketName,
             objectKey,
-            response.HttpStatusCode);
+            response.HttpStatusCode,
+            fileMetadata.FileMetadataId);
 
     }
 }

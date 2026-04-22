@@ -177,6 +177,20 @@ BEGIN
         SET @i = @i + 1;
     END
 END
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[ClansSchema].[FileMetadata]') AND type in (N'U'))
+BEGIN
+    CREATE TABLE [ClansSchema].[FileMetadata] (
+        [FileMetadataId] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        [FileName] NVARCHAR(255) NOT NULL,
+        [FileExtension] NVARCHAR(32) NOT NULL,
+        [FileSizeBytes] BIGINT NOT NULL,
+        [CreatedAtUtc] DATETIME2 NOT NULL,
+        [S3BucketName] NVARCHAR(128) NOT NULL,
+        [S3ObjectKey] NVARCHAR(1024) NOT NULL
+    );
+END
+
 GO
 -- Notifications Tables
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[NotificationsSchema].[Notifications]') AND type in (N'U'))
