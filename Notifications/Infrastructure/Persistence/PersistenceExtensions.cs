@@ -15,7 +15,7 @@ public static class PersistenceExtensions
         }
 
         services.AddDbContext<NotificationsDbContext>(options =>
-            options.UseSqlServer(connectionString));
+            options.UseNpgsql(connectionString));
 
         return services;
     }

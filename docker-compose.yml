@@ -94,13 +94,11 @@ services:
       context: .
       dockerfile: Notifications/Dockerfile
     container_name: notifications
-    environment:
-      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=MicroservicesDb;User Id=NotificationsLogin;Password=StrongPassword456!;TrustServerCertificate=True;
+    env_file:
+      - ./Notifications/.env
     depends_on:
       rabbitmq:
         condition: service_started
-      sql-init:
-        condition: service_completed_successfully
 
   player-matches-history-service:
     build:
