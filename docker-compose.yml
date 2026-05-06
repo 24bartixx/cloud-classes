@@ -129,10 +129,8 @@ services:
       context: .
       dockerfile: Rewards/Dockerfile
     container_name: rewards
-    environment:
-      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=MicroservicesDb;User Id=RewardsLogin;Password=StrongPassword123!;TrustServerCertificate=True;
+    env_file:
+      - ./Rewards/.env
     depends_on:
       rabbitmq:
         condition: service_started
-      sql-init:
-        condition: service_completed_successfully
