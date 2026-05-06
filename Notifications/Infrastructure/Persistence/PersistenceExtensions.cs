@@ -14,8 +14,12 @@ public static class PersistenceExtensions
             throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
         }
 
-        services.AddDbContext<NotificationsDbContext>(options =>
-            options.UseNpgsql(connectionString));
+        services.AddSingleton<DatabaseConnectionLoggingInterceptor>();
+
+        services.AddDbContext<NotificationsDbContext>((serviceProvider, options) =>
+            options
+                .UseNpgsql(connectionString)
+                .AddInterceptors(serviceProvider.GetRequiredService<DatabaseConnectionLoggingInterceptor>()));
 
         return services;
     }

@@ -52,8 +52,9 @@ services:
     container_name: clans
     ports:
       - "5001:8080"
+    env_file:
+      - ./Clans/.env
     environment:
-      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=MicroservicesDb;User Id=ClansLogin;Password=StrongPassword789!;TrustServerCertificate=True;
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}
@@ -62,8 +63,6 @@ services:
     depends_on:
       rabbitmq:
         condition: service_started
-      sql-init:
-        condition: service_completed_successfully
 
   inventories-service:
     build:
