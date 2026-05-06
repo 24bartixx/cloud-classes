@@ -108,20 +108,13 @@ services:
       - rabbitmq
 
     environment:
-      - MongoDb__ConnectionString=mongodb://playermatches_user:playermatches_pass@playermatches-mongo:27017/playermatches
-
-  playermatches-mongo:
-    image: mongo:latest
-    container_name: playermatches-mongo
-    ports:
-      - "27018:27017"
-    environment:
-      - MONGO_INITDB_DATABASE=playermatches
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=adminpass
-      - MONGO_LOG_LEVEL=warning
-    volumes:
-      - ./PlayerMatchesHistory/seed/init-playermatches.js:/docker-entrypoint-initdb.d/init-playermatches.js:ro
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+      - AWS__Region=${AWS_REGION}
+      - DynamoDb__TableName=tanks-player-matches-history
 
   rewards-service:
     build:
