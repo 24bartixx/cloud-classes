@@ -8,6 +8,11 @@ variable "vpc_id" {
   type        = string
 }
 
+variable "subnet_ids" {
+  description = "Subnet IDs used by the RDS DB subnet group."
+  type        = list(string)
+}
+
 variable "postgres_inbound_rules" {
   description = "CIDR-based inbound rules that can connect to PostgreSQL on port 5432."
   type = list(object({
@@ -23,4 +28,19 @@ variable "postgres_inbound_rules" {
     ])
     error_message = "Each postgres_inbound_rules.cidr_ipv4 value must be a valid IPv4 CIDR block, for example 1.2.3.4/32."
   }
+}
+
+variable "db_identifier" {
+  description = "Identifier of the RDS PostgreSQL instance."
+  type        = string
+}
+
+variable "db_name" {
+  description = "Initial database name created by RDS."
+  type        = string
+}
+
+variable "master_username" {
+  description = "Master username for the RDS PostgreSQL instance."
+  type        = string
 }

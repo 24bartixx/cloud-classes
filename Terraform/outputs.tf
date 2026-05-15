@@ -27,3 +27,33 @@ output "rds_postgres_security_group_arn" {
   description = "ARN of the PostgreSQL RDS security group."
   value       = module.database.rds_postgres_security_group_arn
 }
+
+output "rds_postgres_instance_id" {
+  description = "ID of the PostgreSQL RDS instance."
+  value       = module.database.rds_postgres_instance_id
+}
+
+output "rds_postgres_instance_arn" {
+  description = "ARN of the PostgreSQL RDS instance."
+  value       = module.database.rds_postgres_instance_arn
+}
+
+output "rds_postgres_endpoint" {
+  description = "Connection endpoint of the PostgreSQL RDS instance."
+  value       = module.database.rds_postgres_endpoint
+}
+
+output "rds_postgres_address" {
+  description = "Hostname of the PostgreSQL RDS instance."
+  value       = module.database.rds_postgres_address
+}
+
+output "rds_postgres_port" {
+  description = "Port of the PostgreSQL RDS instance."
+  value       = module.database.rds_postgres_port
+}
+
+output "rds_postgres_master_user_secret_arn" {
+  description = "ARN of the AWS-managed Secrets Manager secret for the PostgreSQL master user."
+  value       = module.database.rds_postgres_master_user_secret_arn
+}

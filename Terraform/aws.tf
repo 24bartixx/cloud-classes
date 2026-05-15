@@ -31,8 +31,13 @@ module "dynamodb" {
 module "database" {
   source = "./aws_modules/database"
 
-  name   = "tanks-terraform"
-  vpc_id = module.network.vpc_id
+  name       = "tanks-terraform"
+  vpc_id     = module.network.vpc_id
+  subnet_ids = module.network.public_subnet_ids
+
+  db_identifier   = "tanks-relational-db-terraform"
+  db_name         = "TanksDb"
+  master_username = "postgres"
 
   postgres_inbound_rules = [
     {
