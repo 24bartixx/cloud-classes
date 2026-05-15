@@ -20,3 +20,10 @@ module "storage" {
 
   s3_bucket_prefix = "pwr-ist-280462-tanks-terraform"
 }
+
+module "dynamodb" {
+  source = "./aws_modules/dynamodb"
+
+  inventories_table_name            = "tanks-inventories-terraform"
+  player_matches_history_table_name = "tanks-player-matches-history-terraform"
+}
