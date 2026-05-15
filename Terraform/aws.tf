@@ -27,3 +27,23 @@ module "dynamodb" {
   inventories_table_name            = "tanks-inventories-terraform"
   player_matches_history_table_name = "tanks-player-matches-history-terraform"
 }
+
+module "database" {
+  source = "./aws_modules/database"
+
+  name   = "tanks-terraform"
+  vpc_id = module.network.vpc_id
+
+  postgres_inbound_rules = [
+    {
+      name        = "home-zag-1"
+      cidr_ipv4   = "109.197.45.119/32"
+      description = "Allow PostgreSQL from home in Zagan"
+    },
+    # {
+    #   name        = "university"
+    #   cidr_ipv4   = "5.6.7.8/32"
+    #   description = "Allow PostgreSQL from university IP"
+    # },
+  ]
+}

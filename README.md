@@ -33,3 +33,4 @@ dotnet run --project .\Rewards.Service\Rewards.Service.csproj
 ```
 
 . .\load-aws-env.ps1
+Invoke-RestMethod https://checkip.amazonaws.com
