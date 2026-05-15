@@ -36,7 +36,7 @@ services:
       - AWS_REGION=${AWS_REGION}
       - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
       - AWS__Region=${AWS_REGION}
-      - DynamoDb__TableName=tanks-inventories
+      - DynamoDb__TableName=tanks-inventories-terraform
 
   notifications-service:
     build:
@@ -59,7 +59,7 @@ services:
       - AWS_REGION=${AWS_REGION}
       - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
       - AWS__Region=${AWS_REGION}
-      - DynamoDb__TableName=tanks-player-matches-history
+      - DynamoDb__TableName=tanks-player-matches-history-terraform
 
   rewards-service:
     build:
