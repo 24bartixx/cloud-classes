@@ -28,6 +28,19 @@ module "dynamodb" {
   player_matches_history_table_name = "tanks-player-matches-history-terraform"
 }
 
+module "ecr" {
+  source = "./aws_modules/ecr"
+
+  repositories = [
+    "tanks-clan-games",
+    "tanks-clans",
+    "tanks-inventories",
+    "tanks-notifications",
+    "tanks-player-matches-history",
+    "tanks-rewards",
+  ]
+}
+
 module "database" {
   source = "./aws_modules/database"
 

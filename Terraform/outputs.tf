@@ -18,6 +18,21 @@ output "player_matches_history_dynamodb_table_arn" {
   value       = module.dynamodb.player_matches_history_table_arn
 }
 
+output "ecr_repository_names" {
+  description = "Names of the ECR repositories."
+  value       = module.ecr.repository_names
+}
+
+output "ecr_repository_arns" {
+  description = "ARNs of the ECR repositories."
+  value       = module.ecr.repository_arns
+}
+
+output "ecr_repository_urls" {
+  description = "Repository URLs for pushing Docker images."
+  value       = module.ecr.repository_urls
+}
+
 output "rds_postgres_security_group_id" {
   description = "ID of the PostgreSQL RDS security group."
   value       = module.database.rds_postgres_security_group_id
