@@ -53,7 +53,6 @@ TestResults/
 
 # Docker
 docker-compose.override.yml
-.dockerignore
 
 # Mac
 .DS_Store

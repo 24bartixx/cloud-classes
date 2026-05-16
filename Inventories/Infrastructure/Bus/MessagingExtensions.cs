@@ -1,5 +1,6 @@
 using Inventories.Infrastructure.Configuration;
 using Inventories.Infrastructure.Logging;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -9,9 +10,16 @@ public static class MessagingExtensions
 {
     public static IServiceCollection AddRabbitMqMessaging(
         this IServiceCollection services,
+        IConfiguration configuration,
         string serviceName)
     {
-        var settings = new RabbitMqSettings();
+        var connectionUrl = configuration["RabbitMq:ConnectionUrl"];
+        if (string.IsNullOrWhiteSpace(connectionUrl))
+        {
+            throw new InvalidOperationException("RabbitMq:ConnectionUrl configuration is missing.");
+        }
+
+        var settings = new RabbitMqSettings { ConnectionUrl = connectionUrl };
         services.AddSingleton(settings);
 
         var loggerFactory = AppLogger.CreateLoggerFactory(serviceName);

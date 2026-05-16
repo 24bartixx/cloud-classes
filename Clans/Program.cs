@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
 builder.Services.AddAWSService<IAmazonS3>();
-builder.Services.AddRabbitMqMessaging(serviceName: "Clans.Service");
+builder.Services.AddRabbitMqMessaging(builder.Configuration, serviceName: "Clans.Service");
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblyContaining<ProcessClanWarEndedCommand>());

@@ -3,18 +3,21 @@ using Amazon.S3.Model;
 using Clans.Domain.Entities;
 using Clans.Service.Infrastructure.Persistence;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 
 namespace Clans.Application.Commands.ProcessFileMessage;
 
 public sealed class ProcessFileMessageCommandHandler(
     ILogger<ProcessFileMessageCommandHandler> logger,
     IAmazonS3 s3Client,
-    ClansDbContext dbContext) : IRequestHandler<ProcessFileMessageCommand>
+    ClansDbContext dbContext,
+    IConfiguration configuration) : IRequestHandler<ProcessFileMessageCommand>
 {
-    private const string BucketName = "pwr-ist-280462-tanks-517392773395-us-east-1-an";
     private readonly IAmazonS3 _s3Client = s3Client;
     private readonly ILogger<ProcessFileMessageCommandHandler> _logger = logger;
     private readonly ClansDbContext _dbContext = dbContext;
+    private readonly string _bucketName = configuration["S3:BucketName"]
+        ?? throw new InvalidOperationException("S3:BucketName configuration is missing.");
     
     public async Task Handle(ProcessFileMessageCommand request, CancellationToken cancellationToken)
     {
@@ -32,7 +35,7 @@ public sealed class ProcessFileMessageCommandHandler(
         await using var stream = new MemoryStream(request.EventData.Content);
         var putObjectRequest = new PutObjectRequest
         {
-            BucketName = BucketName,
+            BucketName = _bucketName,
             Key = objectKey,
             InputStream = stream,
             AutoCloseStream = false,
@@ -48,7 +51,7 @@ public sealed class ProcessFileMessageCommandHandler(
             FileExtension = normalizedExtension,
             FileSizeBytes = request.EventData.FileSizeBytes,
             CreatedAtUtc = request.EventData.CreatedAtUtc,
-            S3BucketName = BucketName,
+            S3BucketName = _bucketName,
             S3ObjectKey = objectKey
         };
 
@@ -57,7 +60,7 @@ public sealed class ProcessFileMessageCommandHandler(
 
         _logger.LogInformation(
             "Uploaded file to S3 and saved metadata. Bucket={BucketName}, Key={ObjectKey}, HttpStatusCode={HttpStatusCode}, FileMetadataId={FileMetadataId}",
-            BucketName,
+            _bucketName,
             objectKey,
             response.HttpStatusCode,
             fileMetadata.FileMetadataId);

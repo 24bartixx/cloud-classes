@@ -7,6 +7,8 @@ services:
     container_name: clan-games
     ports:
       - "5000:8080"
+    environment:
+      - RabbitMq__ConnectionUrl=${RABBITMQ_CONNECTION_URL}
 
   clans-service:
     build:
@@ -23,6 +25,8 @@ services:
       - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}
       - AWS_REGION=${AWS_REGION}
       - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+      - RabbitMq__ConnectionUrl=${RABBITMQ_CONNECTION_URL}
+      - S3__BucketName=${S3_BUCKET_NAME}
 
   inventories-service:
     build:
@@ -37,6 +41,7 @@ services:
       - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
       - AWS__Region=${AWS_REGION}
       - DynamoDb__TableName=tanks-inventories-terraform
+      - RabbitMq__ConnectionUrl=${RABBITMQ_CONNECTION_URL}
 
   notifications-service:
     build:
@@ -45,6 +50,8 @@ services:
     container_name: notifications
     env_file:
       - ./Notifications/.env
+    environment:
+      - RabbitMq__ConnectionUrl=${RABBITMQ_CONNECTION_URL}
 
   player-matches-history-service:
     build:
@@ -60,6 +67,7 @@ services:
       - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
       - AWS__Region=${AWS_REGION}
       - DynamoDb__TableName=tanks-player-matches-history-terraform
+      - RabbitMq__ConnectionUrl=${RABBITMQ_CONNECTION_URL}
 
   rewards-service:
     build:
@@ -68,3 +76,5 @@ services:
     container_name: rewards
     env_file:
       - ./Rewards/.env
+    environment:
+      - RabbitMq__ConnectionUrl=${RABBITMQ_CONNECTION_URL}

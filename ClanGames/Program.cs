@@ -8,7 +8,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddRabbitMqMessaging(serviceName: "ClanWars.Api");
+builder.Services.AddRabbitMqMessaging(builder.Configuration, serviceName: "ClanWars.Api");
 builder.Services.AddMediatR(cfg =>
 	cfg.RegisterServicesFromAssemblyContaining<PublishClanWarEndedCommand>());
 

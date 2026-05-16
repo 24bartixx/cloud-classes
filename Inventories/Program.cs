@@ -7,7 +7,7 @@ var host = Host.CreateDefaultBuilder(args)
     {
         services.AddDefaultAWSOptions(ctx.Configuration.GetAWSOptions());
         services.AddAWSService<IAmazonDynamoDB>();
-        services.AddRabbitMqMessaging(serviceName: "Inventories.Service");
+        services.AddRabbitMqMessaging(ctx.Configuration, serviceName: "Inventories.Service");
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssemblyContaining<UpdateInventoryCommand>());
         services.AddHostedService<Inventories.Service.Workers.InventoriesWorker>();

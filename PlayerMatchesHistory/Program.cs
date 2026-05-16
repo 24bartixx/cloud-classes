@@ -10,7 +10,7 @@ var host = Host.CreateDefaultBuilder(args)
     {
         services.AddDefaultAWSOptions(ctx.Configuration.GetAWSOptions());
         services.AddAWSService<IAmazonDynamoDB>();
-        services.AddRabbitMqMessaging(serviceName: "PlayerMatchesHistory.Service");
+        services.AddRabbitMqMessaging(ctx.Configuration, serviceName: "PlayerMatchesHistory.Service");
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssemblyContaining<SaveMatchCommand>());
         services.AddHostedService<PlayerMatchesHistory.Service.Workers.PlayerMatchesHistoryWorker>();

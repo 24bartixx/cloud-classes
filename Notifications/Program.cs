@@ -5,7 +5,7 @@ using Notifications.Application.Commands.SendNotification;
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((ctx, services) =>
     {
-        services.AddRabbitMqMessaging(serviceName: "Notifications.Service");
+        services.AddRabbitMqMessaging(ctx.Configuration, serviceName: "Notifications.Service");
         services.AddPersistence(ctx.Configuration);
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssemblyContaining<SendNotificationCommand>());

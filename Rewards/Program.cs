@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((ctx, services) =>
     {
-        services.AddRabbitMqMessaging(serviceName: "Rewards.Service");
+        services.AddRabbitMqMessaging(ctx.Configuration, serviceName: "Rewards.Service");
         services.AddPersistence(ctx.Configuration);
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssemblyContaining<ProcessClanWarEndedCommand>());

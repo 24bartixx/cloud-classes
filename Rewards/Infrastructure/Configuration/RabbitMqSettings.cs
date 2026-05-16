@@ -2,7 +2,7 @@ namespace Rewards.Infrastructure.Configuration;
 
 public class RabbitMqSettings
 {
-    public string ConnectionUrl { get; set; } = "amqps://gzjxaaje:Ip8MJJlN8PSUGhqbm5aiVEDFKx69aGr-@cow.rmq2.cloudamqp.com/gzjxaaje";
+    public string ConnectionUrl { get; set; } = string.Empty;
 }
 
 public static class ExchangeNames

@@ -1,0 +1,27 @@
+**/bin/
+**/obj/
+**/.vs/
+**/.vscode/
+.git/
+.idea/
+
+# Local secrets/config
+.env
+**/.env
+
+# Terraform local state/cache
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+# Local/editor clutter
+*.user
+*.suo
+*.rsuser
+*.userosscache
+*.sln.docstates
+
+# Docker/compose files are not needed inside service images
+docker-compose*.yml
